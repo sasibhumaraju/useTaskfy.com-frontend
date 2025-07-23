@@ -1,0 +1,268 @@
+:root {
+  
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  letter-spacing: -0.5px;
+  /* font-family: "Open Sans", sans-serif; */
+
+
+  color: var(--black);
+  background-color: var(--bg-page);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Font Sizes  */
+   /* Heading sizes */
+  --font-size-heading-1: 2.25rem;  /* ~36px */
+  --font-size-heading-2: 1.875rem; /* ~30px */
+  --font-size-heading-3: 1.5rem;   /* ~24px */
+  --font-size-heading-4: 1.25rem;  /* ~20px */
+  --font-size-heading-5: 1.125rem; /* ~18px */
+  --font-size-heading-6: 1rem;     /* ~16px */
+
+  /* Body/Text sizes */
+  --font-size-body-lg: 1rem;       /* 16px */
+  --font-size-body-md: 14px;   /* 14px */
+  --font-size-body-sm: 0.75rem;    /* 12px */
+
+  /* Line heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+
+/* --------------------------------------------------------------- */
+
+
+  /* === Background Colors === */
+  --bg-default: hsla(0, 0%, 100%, 1);                   /* white */
+  --bg-muted: hsla(210, 20%, 97%, 1);                   /* light gray */
+  --bg-subtle: hsla(220, 14%, 94%, 1);                  /* subtle background */
+  --bg-emphasis: hsla(220, 13%, 91%, 1);                /* slightly darker background */
+
+  --bg-brand: hsla(214, 30%, 16%, 1);                   /* primary brand (dark blue) */
+  --bg-attention: hsla(33, 100%, 92%, 1);               /* attention bg */
+  --bg-error: hsla(3, 66%, 93%, 1);                     /* light red */
+
+  /* === Text Colors === */
+  --text-default: hsla(220, 6%, 25%, 1);                /* primary text */
+  --text-muted: hsla(218, 11%, 65%, 1);                 /* muted text */
+  --text-subtle: hsla(220, 9%, 46%, 1);                 /* subtle text */
+  --text-inverted: hsla(0, 0%, 100%, 1);                /* for dark backgrounds */
+  --text-error: hsla(0, 63%, 31%, 1);                   /* red error text */
+  --text-attention: hsla(16, 62%, 28%, 1);              /* orange/brown warning text */
+
+  /* === Border Colors === */
+  --border-default: hsla(216, 12%, 84%, 1);             /* default border */
+  --border-muted: hsla(220, 14%, 94%, 1);               /* soft divider */
+  --border-subtle: hsla(220, 13%, 91%, 1);              /* subtle divider */
+
+  /* === Semantic Colors === */
+  --success: hsla(158, 74%, 38%, 1);                    /* green success */
+  --error: hsla(0, 63%, 24%, 1);                        /* strong red */
+  --info: hsla(236, 80%, 25%, 1);                       /* deep blue info */
+
+  /* === Brand Colors === */
+  --brand-main: #292929;
+  --brand-accent: #ffffff;
+
+
+
+  /* Base colors */
+  /* --white: #ffffff;
+  --black: #000000; */
+
+  /* Backgrounds */
+  --bg-page: #ffffff;
+  --bg-subtle: #f9fafb;     /* very light gray */
+  --bg-hover: #f3f4f6;      /* slightly darker on hover */
+  --bg-active: #e5e7eb;     /* active/selected background */
+
+  /* Borders & Dividers */
+  --border: #e5e7eb;        /* standard card/input border */
+  --border-muted: #d1d5db;  /* slightly stronger border */
+
+  /* Text colors */
+  --text-primary: #111827;  /* strong black text */
+  --text-secondary: #374151;/* body text */
+  --text-muted: #6b7280;    /* light muted text */
+  --text-placeholder: #9ca3af;
+
+  /* Primary (Accent: Indigo) */
+  --primary: #6366f1;       /* Indigo-500 */
+  --primary-hover: #4f46e5; /* Indigo-600 */
+  --primary-light: #eef2ff; /* Indigo-50 */
+
+  /* Semantic colors */
+  --success: #10b981;       /* Green-500 */
+  --warning: #f59e0b;       /* Amber-500 */
+  --error: #ef4444;         /* Red-500 */
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  /* Radii */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  /* ----------------------------------------------------------- */
+
+
+  --color-bg: #000000;
+  --color-text: #ffffff;
+  --color-accent: #6366f1;
+  --color-accent-light: #a5b4fc;
+  --color-border: #27272a;
+  --color-surface: #111827;
+
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+
+
+
+  /* ----------------------- */
+
+
+   --primary: #4169e1;      /* royal blue */
+  --primary-hover: #355edb;
+  --primary-text: #ffffff;
+
+  --secondary: transparent;
+  --secondary-border: #4169e1;
+  --secondary-hover: rgba(65, 105, 225, 0.1);
+
+  --danger: #e53935;
+  --danger-hover: #d32f2f;
+
+  --success: #2e7d32;
+  --success-hover: #1b5e20;
+
+  --disabled-bg: #e0e0e0;
+  --disabled-text: #9e9e9e;
+
+  --border-radius: 8px;
+  --padding: 10px 18px;
+  --font-weight: 600;
+  --transition: all 0.2s ease;
+
+
+
+
+  /* =========================================== */
+
+
+
+  /* === Background Colors === */
+  --bg-default: hsla(0, 0%, 100%, 1);                   /* white */
+  --bg-muted: hsla(210, 20%, 97%, 1);                   /* light gray */
+  --bg-subtle: hsla(220, 14%, 94%, 1);                  /* subtle background */
+  --bg-emphasis: hsla(220, 13%, 91%, 1);                /* slightly darker background */
+
+  --bg-brand: #1d2735;                   /* primary brand (dark blue) */
+  --bg-attention: hsla(33, 100%, 92%, 1);               /* attention bg */
+  --bg-error: hsla(3, 66%, 93%, 1);                     /* light red */
+
+  /* === Text Colors === */
+  --text-default: hsla(220, 6%, 25%, 1);                /* primary text */
+  --text-muted: hsla(218, 11%, 65%, 1);                 /* muted text */
+  --text-subtle: hsla(220, 9%, 46%, 1);                 /* subtle text */
+  --text-inverted: hsla(0, 0%, 100%, 1);                /* for dark backgrounds */
+  --text-error: hsla(0, 63%, 31%, 1);                   /* red error text */
+  --text-attention: hsla(16, 62%, 28%, 1);              /* orange/brown warning text */
+
+  /* === Border Colors === */
+  --border-default: hsla(216, 12%, 84%, 1);             /* default border */
+  --border-muted: hsla(220, 14%, 94%, 1);               /* soft divider */
+  --border-subtle: hsla(220, 13%, 91%, 1);              /* subtle divider */
+
+  /* === Semantic Colors === */
+  --success: hsla(158, 74%, 38%, 1);                    /* green success */
+  --error: hsla(0, 63%, 24%, 1);                        /* strong red */
+  --info: hsla(236, 80%, 25%, 1);                       /* deep blue info */
+
+  /* === Brand Colors === */
+  --brand-main: #292929;
+  --brand-accent: #ffffff;
+
+
+  /* ===== shadow ======= */
+  --button-light-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.03) 0px 2px 3px 0px, rgba(0, 0, 0, 0.03) 0px 2px 2px -1px;
+
+
+
+}
+
+  :root {
+    /* === Background Colors === */
+    --bg-default: #ffffff;                      /* pure white */
+    --bg-muted: #f9fafb;                        /* very light gray (sidebar/bg) */
+   
+    --bg-subtle: #f3f4f6;                       /* subtle background blocks */
+    --bg-emphasis: #e5e7eb;                    /* borders/hovered bg */
+   
+    --bg-brand: #111827;                        /* dark brand bg (buttons/headers) */
+    --bg-attention: #fff7ed;                   /* light warm bg for attention */
+    --bg-error: #fef2f2;                        /* soft red bg */
+
+    /* === Text Colors === */
+    --text-default: #111827;                    /* dark gray/black */
+    --text-muted: #6b7280;                      /* medium gray */
+    --text-subtle: #9ca3af;                     /* light gray text */
+    --text-inverted: #ffffff;                   /* for dark bg (buttons etc.) */
+    --text-error: #b91c1c;                      /* red error text */
+    --text-attention: #b45309;                  /* warm orange/brown */
+
+    /* === Border Colors === */
+    --border-default: #e5e7eb;                  /* light gray border */
+    --border-muted: #f3f4f6;                    /* very subtle divider */
+    --border-subtle: #e5e7eb;                   /* slightly visible border */
+
+    /* === Semantic Colors === */
+    --success: #059669;                         /* green (badge, status) */
+    --error: #dc2626;                           /* bold red (alerts) */
+    --info: #2563eb;                            /* strong blue */
+
+    /* === Brand Colors === */
+    --brand-main: #111827;                      /* header/nav/dark brand */
+    --brand-accent: #ffffff;                    /* primary white (text/icon on dark) */
+
+    /* === Shadow === */
+    --button-light-shadow: rgba(0, 0, 0, 0.03) 0px 2px 3px, rgba(0, 0, 0, 0.03) 0px 2px 2px -1px;
+
+    /* === Extra === */
+    --toggle-on: #111827;                       /* switch toggle on */
+    --toggle-off: #e5e7eb;                      /* switch background off */
+    --switch-bg: #d1d5db;                       /* inner toggle bg */
+    --input-bg: #f9fafb;                        /* search/input fields */
+    --btn-hover: #f3f4f6;                       /* button hover background */
+  }
+
+
+html,* {
+
+  margin: 0px;
+  padding: 0px;
+}
+
+/* | Purpose               | Color     | Hex          | Notes                              |
+| --------------------- | --------- | ------------ | ---------------------------------- |
+| 🖤 Primary Background | `#000000` | Black        | Sleek dark UI base                 |
+| 🤍 Foreground (Text)  | `#FFFFFF` | White        | Clean text on dark background      |
+| 🎯 Primary Accent     | `#6366F1` | Indigo       | Call-to-action buttons, highlights |
+| 🔘 Secondary Accent   | `#A5B4FC` | Light Indigo | Hovers, subtle highlights          |
+| 🚫 Error              | `#EF4444` | Red-500      | Error states or delete actions     |
+| ⚠️ Warning            | `#F59E0B` | Amber-500    | For caution/warnings               |
+| ✅ Success             | `#10B981` | Green-500    | Success toasts, completed tasks    |
+| 📘 Info               | `#3B82F6` | Blue-500     | Informational text or icons        |
+| 🩶 Border/Divider     | `#27272A` | Gray-800     | Subtle UI dividers, card borders   |
+| ⬛️ Surface (Cards)    | `#111827` | Slate-900    | Card or modal backgrounds          | */
+
+

@@ -1,0 +1,27 @@
+.profilebutton {
+    display: flex;
+    align-items: center;
+    height: calc(min-content - 40px);
+    padding: 5px 0px;
+    border-radius: 7px;
+    margin: 15px 0px;
+    position: relative;
+    cursor: pointer;
+}
+
+.profilebutton::before {
+    content: "";
+    height: 5.8px;
+    width: 5.8px;
+    border-radius: 100%;
+    background-color: #10b981;
+    position: absolute;
+    top: 24px;
+    left: 22px;
+    outline: solid 1px var(--bg-muted);
+}
+
+.profilebutton:hover {
+    /* background-color: #f5f5f5; */
+     background-color: var(--bg-emphasis);
+}

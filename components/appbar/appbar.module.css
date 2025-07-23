@@ -1,0 +1,67 @@
+.appbar {
+    width: calc(100% - 50px);
+    height: 90px;
+    /* background-color: var(--bg-emphasis); */
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    gap: 8px;
+    position: relative;
+    /* background-color: green; */
+}
+
+/* --------- */
+
+.appbarBackButton {
+    /* padding: 8px 12px;
+    border-radius: 6px;
+    background-color: var(--bg-subtle);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color 0.3s ease; */
+}
+.appbarBackButton:hover {
+    /* background-color: var(--bg-hover); */
+} 
+
+/* --------- */
+.appbarTitleContainer {
+    display: flex;
+    height: 100%;
+    /* background-color: red; */
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2px;
+}
+.appbarTitle {
+    font-size: var(--font-size-heading-4);
+    color: var(--text-primary);
+    font-weight: 900;
+}
+.appbarSubtitle {
+    font-size: var(--font-size-body-md);
+    /* color: var(--text-secondary); */
+     font-weight: 600;
+     font-size: var(--font-size-body-md);
+       color: var(--text-secondary);
+    /* margin-left: 8px; */
+}
+/* --------- */
+
+.appbarActions {
+    /* margin-left: auto; */
+    /* display: flex; */
+    /* align-items: center; */
+    gap: 12px;
+    position: absolute;
+    width: max-content;
+    right: 25px;
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+    /* background-color: red; */
+}
+
+/* --------- */
+
+  
