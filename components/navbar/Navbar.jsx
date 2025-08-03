@@ -5,28 +5,31 @@ import { useNavigate } from 'react-router';
 
 export default function Navbar({links, direction, type, buttonType, bordered=false, intialActiveIndex=0}) {
 
-    const [navs, setNavs] = useState(null);
-    const navigate = useNavigate();
+    const [navs, setNavs] = useState(null);     
+    const navigate = useNavigate();     
 
-    const getNavLinkClass = (classType) => { 
-        if( Constants.VERTICAL === direction ) { 
-            return classType === Constants.ACTIVE? Style.vActive : Style.vInActive;
-        } 
-        if( Constants.HORIZONTAL === direction ) { 
-            return classType === Constants.ACTIVE? Style.hActive : Style.hInActive;
-        } 
-    } 
+    const getNavLinkClass = (classType) => {     
+        if( Constants.VERTICAL === direction ) {        
+            return classType === Constants.ACTIVE? Style.vActive : Style.vInActive;     
+        }       
+        if( Constants.HORIZONTAL === direction ) {      
+            return classType === Constants.ACTIVE? Style.hActive : Style.hInActive;        
+        }       
+    }    
 
     const [classL, setClassL] = useState(Array.from({ length: links.length }, (_,i)=> i==intialActiveIndex && type==NavType.NAV? getNavLinkClass(Constants.ACTIVE) : getNavLinkClass(Constants.IN_ACTIVE)))
 
     const makeThisActive = (idx) => {
         if(NavType.NAV === type) {
-
             links[idx].to && navigate(links[idx].to);
-            links[idx].click && links[idx].click();
             var l = Array.from({ length: links.length }, (_,i)=> i==idx? getNavLinkClass(Constants.ACTIVE) : getNavLinkClass(Constants.IN_ACTIVE))
             setClassL(l); }
-        
+
+        if(NavType.BUTTON === type) {
+            links[idx].click && links[idx].click();
+            // var l = Array.from({ length: links.length }, (_,i)=> i==idx? getNavLinkClass(Constants.ACTIVE) : getNavLinkClass(Constants.IN_ACTIVE))
+            // setClassL(l);
+        }
     }
 
     useEffect(()=>{

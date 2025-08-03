@@ -1,14 +1,16 @@
-import { TbUserFilled, TbUsers } from "react-icons/tb";
+import { TbClockQuestion, TbLivePhoto, TbUserFilled, TbUsers } from "react-icons/tb";
 import { SiPolywork } from "react-icons/si";
-import { LuGrid2X2Check } from "react-icons/lu";
-import { MdWorkOutline } from "react-icons/md";
+import { LuGrid2X2Check, LuUserRound } from "react-icons/lu";
+import { MdOutlineTaskAlt, MdWorkOutline } from "react-icons/md";
 import { LuUsersRound } from "react-icons/lu";
 import { FaAngleDown, FaChevronDown, FaTasks, FaUser, FaUserSecret } from "react-icons/fa";
 import { LiaUserCircle } from "react-icons/lia";
-import { RiAddLine, RiUserSmileLine } from "react-icons/ri";
+import { RiAddLine, RiFocus3Line, RiUserSmileLine } from "react-icons/ri";
 import { HiMiniUser, HiUser } from "react-icons/hi2";
-import { IoIosArrowDown, IoMdArrowRoundBack } from "react-icons/io";
-import { IoChevronDown, IoChevronDownOutline, IoOptionsOutline } from "react-icons/io5";
+import { IoIosArrowDown, IoMdArrowRoundBack, IoMdTime } from "react-icons/io";
+import { IoChevronDown, IoChevronDownOutline, IoClose, IoOptionsOutline } from "react-icons/io5";
+import { PiMicrosoftTeamsLogo } from "react-icons/pi";
+import { SlOptions } from "react-icons/sl";
 
 
 const Icons =  {
@@ -20,7 +22,17 @@ const Icons =  {
     BACK: <IoMdArrowRoundBack />,
     ADD: <RiAddLine />,
     FILTER: <IoOptionsOutline />,
-    DROP_DOWN: <IoChevronDownOutline />
+    DROP_DOWN: <IoChevronDownOutline />,
+    CLOSE: <IoClose />,
+    TIME: <IoMdTime />,
+    TAG_TEAM: <PiMicrosoftTeamsLogo />,
+    LIVE: <TbLivePhoto />,
+    OVERDUE: <TbClockQuestion />,
+    FOCUSED: <RiFocus3Line />,
+    FINISHED: <MdOutlineTaskAlt />,
+    TAG_USER: <LuUserRound />,
+    OPTIONS: <SlOptions />
+
 };
 
 export default Icons;

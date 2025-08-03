@@ -10,7 +10,8 @@
 
 .pagebodyHeader {
   display: flex;
-  align-items: center;
+  align-items: start;
+  justify-content: center;
   justify-content: space-between;
   flex-direction: column;
   padding: 0 0px;
@@ -31,6 +32,16 @@
     -ms-overflow-style: none;  
 }
 
+.pagebodyFilter {
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  /* border-radius: 7px; */
+  /* background-color: red; */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  
+}
+
 .pagebodyActionButtons {
   width: 100%;
     overflow-y: hidden;
@@ -40,6 +51,7 @@
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  
 }
+
 .pagebodyActionsButton:hover {
   background-color: var(--bg-hover);
 }
@@ -51,5 +63,7 @@
   width: 100%;
   height: 100%;
   /* background-color: var(--bg-muted); */
+  /* background-color: red; */
+  padding: 17px 0px;
 }
 

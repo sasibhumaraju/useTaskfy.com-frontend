@@ -1,0 +1,97 @@
+.listviewContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+  padding: 0px 0px;
+  background-color: var(--bg-default);
+  outline: 1px solid var(--border-default);
+  border-radius: 5px;
+  overflow: hidden;
+ font-size: var(--font-size-body-md);
+ color: var(--text-default);
+  font-weight: 600;
+}
+
+.listview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* gap: 10px; */
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer and Edge */
+    
+}
+
+.listviewItem {
+  padding: 17px 25px;
+  border-bottom: 1px solid var(--border-default);
+   /* outline: 1px solid var(--border-default); */
+  border-radius: 0px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.listviewItem:hover {
+  background-color: var(--bg-subtle);
+}
+
+
+.listviewItemContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.listviewItemHeaderContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+.listviewItemHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.listviewItemSubHeader {
+    display: flex;
+    justify-content: start;
+    gap: 1px;
+    align-items: center;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: var(--font-size-body-sm);
+}
+.listviewItemSubHeader  p {
+    margin: 0px;
+    padding: 0px;
+}
+
+.listviewItemBody {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.listviewItemTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.listviewItemActions {
+    display: flex;
+    gap: 0px;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+}
+
+

@@ -1,0 +1,61 @@
+.actionsButtonContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    height: max-content;
+    /* background-color: red; */
+}
+
+.filterOptions {
+    position: absolute;
+    z-index: 99999999999;
+    top: calc(100% + 7px);
+    /* left: 0; */
+    right: 0;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-default);
+    /* width: max-content; */
+     outline: 1px solid var(--border-default);
+    box-shadow: var(--button-light-shadow);
+    overflow: hidden;
+    background-color: var(--bg-default);
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 5px 20px 0px, rgba(0, 0, 0, 0.03) 0px 10px 40px 0px;
+box-sizing: border-box;
+  
+}
+
+.filterOption {
+    width: 160px;
+    /* background-color: red; */
+    border-radius: 1px;
+    font-weight: 600;
+    padding: 8px 15px;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: var(--font-size-body-md);
+    color: var(--text-secondary);
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+
+}
+.filterOption:hover {
+    background-color: var(--bg-subtle);
+    color: var(--text-primary);
+    /* font-weight: bold; */
+    transition: background-color 0.2s ease;
+}
+/* .filterOptions .filterOption:first-child {
+    background-color: var(--bg-emphasis);
+    color: var(--text-primary);
+    font-weight: bold;
+} */

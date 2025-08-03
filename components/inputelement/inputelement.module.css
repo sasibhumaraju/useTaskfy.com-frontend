@@ -1,0 +1,44 @@
+/* CalStyleForm.module.css */
+.input {
+  width: calc(100% - 30px);
+  border-radius: 10px;
+  padding: 5px 12px;
+  color: #374151;
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+    outline: 1px solid var(--border-default);
+    box-shadow: var(--button-light-shadow);
+    font-size: var(--font-size-body-md);
+    font-weight: 400;
+    border: 2px solid transparent;
+    
+}
+
+.input::placeholder {
+  color: #9ca3af;
+  font-size: var(--font-size-body-md);
+  font-weight: 400;
+}
+
+.input:focus {
+  border: 2px solid black;
+  box-shadow: var(--button-light-shadow);
+  font-size: var(--font-size-body-md);
+  font-weight: 400;
+  transition: none;
+  outline: none;
+   
+}
+
+.inputElementContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+label {
+    font-size: var(--font-size-body-md);
+    color: var(--text-primary);
+    font-weight: 600;
+}

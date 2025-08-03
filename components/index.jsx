@@ -7,3 +7,6 @@ export { default as Icons } from './icon/Icons';
 export { default as Navbar } from './navbar/Navbar';
 export { default as Toggle } from './toggle/Toggle';
 export {default as Filter} from './filter/Filter';
+export { default as Tags } from './tags/Tags';
+export { default as TagsTags } from './tags/TagsTags'
+export { default as Actionsbutton} from './actionsbutton/Actionsbutton'
