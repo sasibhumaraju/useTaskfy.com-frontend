@@ -17,16 +17,16 @@
 
   /* Font Sizes  */
    /* Heading sizes */
-  --font-size-heading-1: 2.25rem;  /* ~36px */
-  --font-size-heading-2: 1.875rem; /* ~30px */
-  --font-size-heading-3: 1.5rem;   /* ~24px */
-  --font-size-heading-4: 1.25rem;  /* ~20px */
-  --font-size-heading-5: 1.125rem; /* ~18px */
-  --font-size-heading-6: 1rem;     /* ~16px */
+  --font-size-heading-1: 36px;
+  --font-size-heading-2: 30px;
+  --font-size-heading-3: 24px;
+  --font-size-heading-4: 20px;
+  --font-size-heading-5: 18px;
+  --font-size-heading-6: 16px;
 
   /* Body/Text sizes */
-  --font-size-body-lg: 1rem;       /* 16px */
-  --font-size-body-md: 14px;   /* 14px */
+  --font-size-body-lg: 17px;       /* 16px */
+  --font-size-body-md: 16px;   /* 14px */
   --font-size-body-sm: 0.75rem;    /* 12px */
 
   /* Line heights */

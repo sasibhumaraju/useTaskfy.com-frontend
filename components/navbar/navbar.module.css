@@ -14,6 +14,7 @@
 .horizontal {
     height: calc(max-content - 4px);
     width: 100%;
+    width: max-content;
     padding: 2px 2px;
     display: flex;
     align-items: center;
@@ -75,6 +76,7 @@
     font-size: var(--font-size-body-md);
     margin: 0px 0px;
      min-width: max-content;
+      outline: 1px solid var(--border-default);
 }
 
 .hActive, 

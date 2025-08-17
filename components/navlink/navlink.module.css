@@ -1,0 +1,135 @@
+
+
+/* For containers */
+.vertical {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+    justify-content: start;
+    margin: 0px;
+    padding: 0px;
+    gap: 2px;
+    width: calc(100% - 0px);
+    /* padding: 20px; */
+}
+.horizontal {
+    height: calc(max-content - 4px);
+    width: 100%;
+    padding: 2px 2px;
+    display: flex;
+    align-items: center;
+    flex-direction:row;
+    font-size: var(--font-size-body-lg);
+    gap: 5px;
+    /* background-color: red; */
+}
+
+
+/* For active and inactive states */
+
+.vActive {
+    font-weight: 600;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-primary);
+    width: calc(100% - 24px);
+    padding: 7px 10px;
+    border-radius: 6px;
+    background-color: var(--bg-emphasis);
+    font-size: var(--font-size-body-md);
+    margin: 0px 2px;
+    position: relative;
+}
+.vInActive {
+     font-weight: 600;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-primary);
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: var(--font-size-body-md);
+    margin: 0px 2px;
+}
+
+.hActive {
+    font-weight: 600;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-primary);
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: var(--bg-emphasis);
+    font-size: var(--font-size-body-md);
+    margin: 0px 0px;
+    /* width: 800px; */
+    min-width: max-content;
+}
+.hInActive {
+    font-weight: 600;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-secondary);
+    padding: 5px 10px;
+    border-radius: 6px;
+    /* background-color: var(--bg-hover); */
+    font-size: var(--font-size-body-md);
+    margin: 0px 0px;
+     min-width: max-content;
+}
+
+/* For active and inactive states */
+
+.hActive, 
+.hInActive{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: start;
+    align-items: center;
+}
+
+.vActive,  
+.vInActive {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: start;
+    align-items: center;
+}
+
+.vActive::before{
+    content: ">";
+    position: absolute;
+    font-weight: bolder;
+    color: var(--text-muted);
+    font-size: var(--font-size-body-md);
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: color 2s ease;
+    /* background-color: red; */
+}
+
+.vInActive,
+.hInActive {
+    color: var(--text-secondary);
+}
+
+.vActive:hover, 
+.hActive:hover, 
+.vInActive:hover, 
+.hInActive:hover{
+    background-color: var(--bg-subtle);
+    transition: background-color 0.2s ease;
+}
+
+

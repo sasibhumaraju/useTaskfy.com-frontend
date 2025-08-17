@@ -1,0 +1,33 @@
+.textAreaContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.textArea {
+    
+    min-height: 33px;
+    height: 99px; 
+    max-height: 200px;
+    resize: vertical; 
+    box-sizing: border-box;
+
+    /* width: calc(100% - 0px); */
+  border-radius: 10px;
+  padding: 5px 12px;
+  color: #374151;
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+    outline: 1px solid var(--border-default);
+    box-shadow: var(--button-light-shadow);
+    font-size: var(--font-size-body-md);
+    font-weight: 400;
+    border: 2px solid transparent;
+}
+
+.textArea:focus {
+     border: 2px solid black;
+     outline: none;
+}
+
+

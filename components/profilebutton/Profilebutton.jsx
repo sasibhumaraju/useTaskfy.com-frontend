@@ -4,13 +4,20 @@ import Navbar from '../navbar/Navbar'
 import Icon from '../icon/Icon'
 import Icons from '../icon/Icons'
 import { ButtonType, Constants, IconSizes, NavType } from '../../strings/constants'
+import { useAuth } from '../../context/AuthContext'
+import { NavLink } from 'react-router'
+import Navlink from '../navlink/Navlink'
 
 function Profilebutton() {
+  const { user, login, logout } = useAuth();
+
+
   return (
-    <div className={Style.profilebutton}>
-        <Navbar direction={Constants.VERTICAL} type={NavType.BUTTON} buttonType={ButtonType.LIGHT} links={[
-          {to:"/home",element:<p>Sasi Bhumaraju</p>,  headIcon: <Icon size={IconSizes.sm} icon={Icons.USER}></Icon>}]} ></Navbar>
-    </div>
+        <Navlink to="/profile" headIcon={<Icon size={IconSizes.sm} icon={Icons.USER}></Icon>} activeClassName={Style.profileActiveButton} inActiveClassName={Style.profileInActiveButton}>
+          <span className={Style.profileText}>
+             {user ? user.name : "Guest"}
+          </span>
+        </Navlink>
   )
 }
 

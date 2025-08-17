@@ -1,6 +1,7 @@
 .appbar {
     width: calc(100% - 50px);
-    height: 90px;
+    /* height: 90px; */
+    min-height: 90px ;
     /* background-color: var(--bg-emphasis); */
     display: flex;
     align-items: center;
@@ -33,6 +34,7 @@
     justify-content: center;
     flex-direction: column;
     gap: 2px;
+    width: 100%;
 }
 .appbarTitle {
     font-size: var(--font-size-heading-4);
@@ -45,7 +47,10 @@
      font-weight: 600;
      font-size: var(--font-size-body-md);
        color: var(--text-secondary);
+       width: calc(100% - 150px);
+       /* background-color: red; */
     /* margin-left: 8px; */
+    white-space: pre-wrap;
 }
 /* --------- */
 

@@ -1,0 +1,40 @@
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--border-muted);
+}
+
+.logo {
+    font-weight: bold;
+    font-size: var(--font-size-heading-5);
+    color: black;
+}
+
+.welcome {
+    font-size: var(--font-size-heading-2);
+    font-weight: bold;
+    color: black;
+    margin-bottom: 40px;
+}
+
+.loginFormContainer {
+    width: calc(100% - 65px);
+    max-width: calc(450px - 65px);
+    background-color: red;
+    padding: 35px;
+    background-color: white;
+    border-radius: 4px;
+    outline: 1px solid var(--border-default);
+}
+
+.footer {
+    margin-top: 40px;
+    font-size: var(--font-size-body-md);
+    color: var(--text-secondary);
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+}

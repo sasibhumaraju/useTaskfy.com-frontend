@@ -9,15 +9,15 @@ import ActionsIcons from './ActionsIcons';
 function Actionsbutton({actions}) {
 
     const [showOptions, toggleShowOptions] = useState(false);
-    const actionRef = useRef();
+    const ref = useRef();
 
     useEffect(()=>{
-        console.log(JSON.stringify(actions));
+        // console.log(JSON.stringify(actions));
         
         const handleClickOutside = (e) => {
             
-            if(actionRef.current && !actionRef.current.contains(e.target)) {
-                console.log("heyy use effect");
+            if(ref.current && !ref.current.contains(e.target)) {
+                // console.log("heyy use effect");
                 toggleShowOptions(false);
             }
         }
@@ -27,7 +27,6 @@ function Actionsbutton({actions}) {
 
     const handleToggle = () => {
         console.log("hello yaar!");
-        
         toggleShowOptions(!showOptions);
     };
     
@@ -39,7 +38,7 @@ function Actionsbutton({actions}) {
 
 
   return (
-    <div className={Style.actionsButtonContainer} ref={actionRef}>
+    <div className={Style.actionsButtonContainer} ref={ref}>
         {/* <div> */}
         <Navbar direction={Constants.HORIZONTAL} type={NavType.BUTTON} bordered buttonType={ButtonType.LIGHT} 
             links={[{click: handleToggle, element:null,  headIcon: <Icon size={IconSizes.sm} icon={Icons.OPTIONS}></Icon>}]}>
@@ -47,14 +46,14 @@ function Actionsbutton({actions}) {
         {/* </div> */}
 
         {showOptions && (
-        <div className={Style.filterOptions} >
+        <div className={Style.filterOptions} ref={ref}>
             {/* <div  className={Style.filterOption} onClick={()=>console.log("Select Filter By")}   >
-                    Select an action
+                    Select Action
             </div> */}
            
               {  actions.map((action, index) => (
                 <div key={index} className={Style.filterOption} onClick={() => takeAction(index)}  >
-                  {ActionsIcons[  action.name.toUpperCase()]}  {action.name}
+                   {ActionsIcons[action.name.toUpperCase()]}  {action.name}
                 </div>
                 ))}
         </div>

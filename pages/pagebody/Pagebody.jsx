@@ -2,29 +2,40 @@ import { Filter, Icon, Icons, Navbar } from '../../components';
 import { ButtonType, Constants, IconSizes, NavType } from '../../strings/constants';
 import Style from './pagebody.module.css';
 
-function Pagebody({pageNavs, paramClicks, intialActiveParamIndex=0, filters, selectedFilter, setSelectedFilter, children }) {
+function  Pagebody({
+      pageNavs1, 
+      pageNavs2, 
+      intialActiveIndex1=0, 
+      intialActiveIndex2=0, 
+      filtersList, 
+      selectedFiltersList, 
+      setSelectedFiltersList, 
+      children, 
+      pageBodyContentVerticalPadding="17px", 
+      pageBodyContentHorizontalPadding="0px"
+    }) {
   
   return (
-    <div className={Style.pagebody}>
+      <div className={Style.pagebody}>
         <div className={Style.pagebodyHeader}>
-          { pageNavs && <div className={Style.pagebodyNav}>
-                    <Navbar direction={Constants.HORIZONTAL} type={NavType.NAV} buttonType={ButtonType.LIGHT} links={pageNavs} >                      
-                </Navbar>
-                </div> }
-        
-          { paramClicks && <div className={Style.pagebodyActionButtons}>
-               <Navbar direction={Constants.HORIZONTAL} type={NavType.NAV} bordered={true} buttonType={ButtonType.LIGHT} links={paramClicks} intialActiveIndex={intialActiveParamIndex}>                      
-                </Navbar>
-            </div>}
 
-         {filters && <Filter filters={filters} selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} />}
+          { pageNavs1 && <div className={Style.pagebodyNav}>
+              <Navbar direction={Constants.HORIZONTAL} type={NavType.NAV} buttonType={ButtonType.LIGHT} links={pageNavs1} intialActiveIndex={intialActiveIndex1} />  
+          </div>}
+
+          { pageNavs2 && <div className={Style.pagebodyActionButtons}>
+              <Navbar direction={Constants.HORIZONTAL} type={NavType.NAV} bordered={true} buttonType={ButtonType.LIGHT} links={pageNavs2} intialActiveIndex={intialActiveIndex2}/>         
+          </div>}
+
+          {filtersList && <Filter filters={filtersList} selectedFilter={selectedFiltersList} setSelectedFilter={setSelectedFiltersList} />}
+
         </div>
 
-        <div className={Style.pagebodyContent}>
+        <div className={Style.pagebodyContent} style={{padding: `${pageBodyContentVerticalPadding} ${pageBodyContentHorizontalPadding}`}}>
           {children}
         </div>
-    </div>
-     
+
+      </div>
   )
 }
 

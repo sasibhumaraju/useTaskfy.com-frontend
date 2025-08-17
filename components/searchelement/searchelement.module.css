@@ -1,0 +1,200 @@
+/* CalStyleForm.module.css */
+
+.search {
+     position: relative;
+}
+.input {
+  width: calc(100% - 30px);
+  border-radius: 10px;
+  padding: 5px 12px;
+  color: #374151;
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+    outline: 1px solid var(--border-default);
+    box-shadow: var(--button-light-shadow);
+    font-size: var(--font-size-body-md);
+    font-weight: 400;
+    border: 2px solid transparent;
+    
+}
+
+.input::placeholder {
+  color: #9ca3af;
+  font-size: var(--font-size-body-md);
+  font-weight: 400;
+}
+
+.input:focus {
+  border: 2px solid black;
+  box-shadow: var(--button-light-shadow);
+  font-size: var(--font-size-body-md);
+  font-weight: 400;
+  transition: none;
+  outline: none;
+   
+}
+
+.searchElementContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    position: relative;
+}
+
+label {
+    font-size: var(--font-size-body-md);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+
+
+
+.filter {
+  padding: 0px 0px;
+  display: flex;
+  width: 100%;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  /* border: 1px solid #eee; */
+  /* border-radius: 4px; */
+  /* background-color: #f9f9f9; */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  position: relative;
+  flex-wrap: wrap;
+  height: max-content;
+  /* background-color: red; */
+}
+
+.hActive {
+    font-weight: 600;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-primary);
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: var(--bg-emphasis);
+    font-size: var(--font-size-body-md);
+    margin: 0px 0px;
+    /* width: 800px; */
+    min-width: max-content;
+}
+.hInActive {
+    font-weight: 600;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-secondary);
+    padding: 5px 10px;
+    border-radius: 6px;
+    /* background-color: var(--bg-hover); */
+    font-size: var(--font-size-body-md);
+    margin: 0px 0px;
+     /* min-width: max-content; */
+}
+
+.hInActive{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: start;
+    align-items: center;
+}
+
+.lightButton {
+  cursor: pointer;
+  transition: var(--transition);
+  outline: 1px solid var(--border-default);
+  box-shadow: var(--button-light-shadow);
+  padding: 7px 10px;
+  border-radius: 10px;
+  color: var(--text-default);
+    min-width: max-content;
+    position: relative;
+  
+}
+.lightButton:hover {
+    background-color: var(--bg-subtle);
+    transition: background-color 0.2s ease;
+}
+
+.lightButton:active {
+  transform: scale(0.98);
+}
+
+.filterOptions {
+    position: absolute;
+    width: calc(100% - 2px);
+    z-index: 10000px;
+    top: calc(100% + 7px);
+    left: 0;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-default);
+    /* width: max-content; */
+     outline: 1px solid var(--border-default);
+    box-shadow: var(--button-light-shadow);
+    overflow: hidden;
+    background-color: var(--bg-default);
+}
+
+.filterOption {
+    width: 100%;
+    /* background-color: red; */
+    border-radius: 1px;
+    font-weight: 500;
+    padding: 8px 15px;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: var(--font-size-body-md);
+    color: var(--text-secondary);
+
+}
+.filterOption:hover {
+    background-color: var(--bg-subtle);
+    color: var(--text-primary);
+    /* font-weight: bold; */
+    transition: background-color 0.2s ease;
+}
+/* .filterOptions .filterOption:first-child {
+    background-color: var(--bg-emphasis);
+    color: var(--text-primary);
+    font-weight: bold;
+} */
+
+.selectedFilter {
+    transition: var(--transition);
+    transition: color 0.3s ease;
+    outline: 1px solid var(--border-default);
+    box-shadow: var(--button-light-shadow);
+    border-radius: 10px;
+    width: min-content;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-secondary);
+    padding: 5px 10px;
+    /* background-color: var(--bg-hover); */
+    font-size: var(--font-size-body-md);
+    margin: 0px 0px;
+     /* min-width: max-content; */
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 5px;
+     cursor: pointer;
+}
+
+.selectedFilterContainer {
+ margin-bottom: 20px;
+ display: flex;
+ gap: 5px;
+}
+

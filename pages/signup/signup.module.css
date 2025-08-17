@@ -1,0 +1,51 @@
+.signupContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    min-height: 100vh;
+    /* overflow-y: auto; */
+    padding: 50px 0px;
+    background-color: var(--border-muted);
+}
+
+.logo {
+    font-weight: bold;
+    font-size: var(--font-size-heading-3);
+    color: black;
+}
+
+.welcome {
+    font-size: var(--font-size-heading-5);
+    font-weight: 600;
+    color: black;
+    margin-bottom: 40px;
+    color: var(--text-muted);
+}
+
+.loginFormContainer {
+    width: calc(100% - 65px);
+    max-width: calc(450px - 65px);
+    background-color: red;
+    padding: 35px;
+    background-color: white;
+    border-radius: 4px;
+    outline: 1px solid var(--border-default);
+     transition: all 0.3s ease;
+}
+
+.footer {
+    margin-top: 40px;
+    font-size: var(--font-size-body-md);
+    color: var(--text-secondary);
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.passwordRequirements {
+    margin-top: 0px;
+    margin-left: 20px;
+    font-size: var(--font-size-body-sm);
+    color: var(--text-secondary);
+}

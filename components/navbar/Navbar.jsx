@@ -1,13 +1,21 @@
 import React, { use, useEffect, useState } from 'react'
 import {ButtonType, Constants, NavType} from '../../strings/constants';
 import Style from './navbar.module.css'
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
-export default function Navbar({links, direction, type, buttonType, bordered=false, intialActiveIndex=0}) {
+export default function Navbar({links, direction, divId, type, buttonType, bordered=false, intialActiveIndex=0,  
+
+    activeIndex, 
+}) {
 
     const [navs, setNavs] = useState(null);     
-    const navigate = useNavigate();     
+    const navigate = useNavigate(); 
+    const location = useLocation(); 
 
+    useEffect(()=>{
+       activateThisLink(intialActiveIndex)
+    },[intialActiveIndex])
+  
     const getNavLinkClass = (classType) => {     
         if( Constants.VERTICAL === direction ) {        
             return classType === Constants.ACTIVE? Style.vActive : Style.vInActive;     
@@ -20,16 +28,16 @@ export default function Navbar({links, direction, type, buttonType, bordered=fal
     const [classL, setClassL] = useState(Array.from({ length: links.length }, (_,i)=> i==intialActiveIndex && type==NavType.NAV? getNavLinkClass(Constants.ACTIVE) : getNavLinkClass(Constants.IN_ACTIVE)))
 
     const makeThisActive = (idx) => {
-        if(NavType.NAV === type) {
+        links[idx].to && navigate(links[idx].to);
+        links[idx].click && links[idx].click();
+        activateThisLink(idx)
+    }
+
+    const activateThisLink = (idx) => {
+         if(NavType.NAV === type) {
             links[idx].to && navigate(links[idx].to);
             var l = Array.from({ length: links.length }, (_,i)=> i==idx? getNavLinkClass(Constants.ACTIVE) : getNavLinkClass(Constants.IN_ACTIVE))
             setClassL(l); }
-
-        if(NavType.BUTTON === type) {
-            links[idx].click && links[idx].click();
-            // var l = Array.from({ length: links.length }, (_,i)=> i==idx? getNavLinkClass(Constants.ACTIVE) : getNavLinkClass(Constants.IN_ACTIVE))
-            // setClassL(l);
-        }
     }
 
     useEffect(()=>{
@@ -41,7 +49,7 @@ export default function Navbar({links, direction, type, buttonType, bordered=fal
             if(type===NavType.BUTTON) {
                 return <div key={_i} className={`${classL[_i]}  ${buttonType===ButtonType.LIGHT? Style.lightButton : Style.darkButton}`} style={{border: bordered? 'default' : 'none', outline: bordered? 'default' : 'none', boxShadow: bordered? 'default' : 'none'}} onClick={()=>makeThisActive(_i)} > {headIcon}  {element} {tailIcon} </div>
             }
-            return <div key={_i} className={classL[_i]} onClick={()=>makeThisActive(_i)} > {headIcon}  {element} {tailIcon} </div>
+            return <div key={_i} id={divId} className={classL[_i]} onClick={()=>makeThisActive(_i)} > {headIcon}  {element} {tailIcon} </div>
         })
         setNavs(l);
     },[links,classL])
@@ -49,4 +57,5 @@ export default function Navbar({links, direction, type, buttonType, bordered=fal
   return (
     <div className={ Constants.VERTICAL===direction? `${Style.vertical}` : `${Style.horizontal}`}> {navs} </div>
   )
+
 }

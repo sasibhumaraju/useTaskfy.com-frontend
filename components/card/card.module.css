@@ -9,35 +9,45 @@
   padding: 2rem;
 }
 
-.card {
+.cardContainer {
+  padding: 25px;
   background-color: var(--bg-muted);
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  box-shadow: var(--button-light-shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  min-height: 180px;
 }
 
-.card .icon {
-  font-size: 1.25rem;
+.cardContainer:hover {
+  /* box-shadow: 0 4px 12px rgba(0,0,0,0.08); */
 }
 
-.card h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text-default);
-  margin: 0;
+.card {
+  
 }
 
-.card p {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  margin: 0;
+.title {
+  margin-bottom: 8px;
+  color: #111827; 
+
+   font-size: var(--font-size-heading-4);
+    color: var(--text-primary);
+    font-weight: 900;
 }
 
+.message {
+  font-size: 15px;
+  color: #4b5563; 
+  line-height: 1.4;
 
-.card:hover {
-  background-color: var(--bg-subtle);
-  cursor: pointer;
+   font-size: var(--font-size-body-md);
+    /* color: var(--text-secondary); */
+     font-weight: 400;
+     font-size: var(--font-size-body-md);
+       color: var(--text-muted);
+}
+
+.icon {
+  font-size: 24px;
+  margin-bottom: 24px;
 }

@@ -5,7 +5,7 @@ import Icons from '../icon/Icons'
 import { IconSizes } from '../../strings/constants'
 
 
-const Filter = ({ filters, selectedFilter, setSelectedFilter }) => {
+const  Filter = ({ filters, selectedFilter, setSelectedFilter }) => {
   const [showOptions, setShowOptions] = useState(false);
   const containerRef = useRef(null);
 

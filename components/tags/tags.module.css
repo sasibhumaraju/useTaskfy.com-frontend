@@ -15,4 +15,5 @@
   align-items: center;
   flex-direction: row;
   gap: 3px;
+  width: max-content;
 }

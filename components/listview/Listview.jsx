@@ -17,8 +17,15 @@ function Listview({ items, actionsElement }) {
             
             <div className={Style.listviewItemContent}>
                 {/* <div className={Style.listviewItemHeaderContainer}> */}
-                    <div className={Style.listviewItemHeader}>{"Do cics activity"}</div>
-                      <div className={Style.listviewItemTags}><Tags tags={[TagsTags.PROJECT, TagsTags.TASK_ACTIVE, TagsTags.TASK_FINISHED, TagsTags.TASK_FOCUS, TagsTags.TASK_OVERDUE, TagsTags.TEAM, TagsTags.USER]}/></div>
+                    {/* <div className={Style.listviewItemHeader}>{item}</div> */}
+                      {/* <div className={Style.listviewItemTags}><Tags tags={[
+                        TagsTags.PROJECT, 
+                        TagsTags.TASK_ACTIVE, 
+                        TagsTags.TASK_FINISHED, 
+                        TagsTags.TASK_FOCUS, 
+                        TagsTags.TASK_OVERDUE, 
+                        TagsTags.TEAM, 
+                        TagsTags.USER]}/></div> */}
 
                 
                 {/* </div> */}

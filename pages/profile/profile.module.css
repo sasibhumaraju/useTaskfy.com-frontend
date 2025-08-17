@@ -1,0 +1,44 @@
+.profileContainer {
+    padding: 5px 25px;
+    height: max-content;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    width: calc(100% - 50px);
+}
+
+.profileInnerContainer {
+    width: 100%;   
+    max-width: 800px;
+    height: max-content;
+    gap: 10px;
+    /* background-color: red; */
+    margin: 20px;
+    flex: 1;      
+     outline: 1px solid var(--border-default);
+     transition: all 0.3s ease;
+      border-radius: 8px;
+}
+
+.profileForm {
+    width: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0px 25px;
+    padding-top: 25px;
+    /* background-color: red; */
+}
+
+.profileSubmit {
+    width: calc(100% - 25px);
+    height: 80px;
+    display: flex;
+    /* background-color: red; */
+    justify-content: end;
+    align-items: center;
+    margin-top: 0px;
+    padding-right: 25px;
+    background-color: var(--bg-muted);
+}

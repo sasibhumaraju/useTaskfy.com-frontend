@@ -1,16 +1,17 @@
 import { TbClockQuestion, TbLivePhoto, TbUserFilled, TbUsers } from "react-icons/tb";
 import { SiPolywork } from "react-icons/si";
 import { LuGrid2X2Check, LuUserRound } from "react-icons/lu";
-import { MdOutlineTaskAlt, MdWorkOutline } from "react-icons/md";
+import { MdOutlineDarkMode, MdOutlineTaskAlt, MdWorkOutline } from "react-icons/md";
 import { LuUsersRound } from "react-icons/lu";
 import { FaAngleDown, FaChevronDown, FaTasks, FaUser, FaUserSecret } from "react-icons/fa";
 import { LiaUserCircle } from "react-icons/lia";
 import { RiAddLine, RiFocus3Line, RiUserSmileLine } from "react-icons/ri";
 import { HiMiniUser, HiUser } from "react-icons/hi2";
-import { IoIosArrowDown, IoMdArrowRoundBack, IoMdTime } from "react-icons/io";
+import { IoIosArrowDown, IoMdArrowRoundBack, IoMdLogOut, IoMdTime } from "react-icons/io";
 import { IoChevronDown, IoChevronDownOutline, IoClose, IoOptionsOutline } from "react-icons/io5";
 import { PiMicrosoftTeamsLogo } from "react-icons/pi";
 import { SlOptions } from "react-icons/sl";
+import { FiInfo } from "react-icons/fi";
 
 
 const Icons =  {
@@ -31,7 +32,10 @@ const Icons =  {
     FOCUSED: <RiFocus3Line />,
     FINISHED: <MdOutlineTaskAlt />,
     TAG_USER: <LuUserRound />,
-    OPTIONS: <SlOptions />
+    OPTIONS: <SlOptions />,
+    LOGOUT: <IoMdLogOut />,
+    DARKTHEME: <MdOutlineDarkMode />,
+    INFO: <FiInfo />
 
 };
 

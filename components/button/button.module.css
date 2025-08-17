@@ -1,0 +1,78 @@
+.lightThemeButton {
+    cursor: pointer;
+    transition: var(--transition);
+    outline: 1px solid var(--border-default);
+    box-shadow: var(--button-light-shadow);
+    padding: 7px 10px;
+    border-radius: 10px;
+    color: var(--text-default);
+
+    font-weight: 600;
+    text-decoration: none;
+    font-size: var(--font-size-body-md);
+    margin: 0px 0px;
+    min-width: max-content;
+    border: none;
+    background-color: var(--bg-muted);
+}
+
+.lightThemeButton:hover {
+   background-color: var(--bg-emphasis);
+    transition: background-color 0.2s ease;
+}
+
+.darkThemeButton {
+ cursor: pointer;
+    transition: var(--transition);
+    outline: 1px solid rgb(59, 58, 58);
+    box-shadow: var(--button-light-shadow);
+    padding: 7px 10px;
+    border-radius: 10px;
+    color: var(--text-default);
+
+    font-weight: 600;
+    text-decoration: none;
+    font-size: var(--font-size-body-md);
+    margin: 0px 0px;
+    min-width: max-content;
+    border: none;
+    background-color: white;
+
+    background-color: #202020; /* dark gray/black */
+  color: white;
+  padding: 7px 12px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+ box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.4),       /* Bottom shadow */
+    inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Inner top highlight */
+  transition: all 0.2s ease;
+}
+
+
+.darkButton {
+  background-color: #202020; /* dark gray/black */
+  color: white;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.darkThemeButton:hover {
+  background-color: #2a2a2a;
+  box-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+}
+
+.darkThemeButton:active {
+  transform: scale(0.98);
+}

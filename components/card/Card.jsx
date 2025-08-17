@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import Style from './card.module.css';
 
-const Card = ({ title = "Enable Something" }) => {
+const Card = ({ title ="", message = "", icon }) => {
   const [enabled, setEnabled] = useState(false);
 
   const toggle = () => setEnabled(!enabled);
 
   return (
-    <div className={Style.cardGrid}>
+    <div className={Style.cardContainer}>
       <div className={Style.card}>
-        <div className={Style.icon} style={{ color: 'var(--error)' }}>👥</div>
-        <h3>Collective Scheduling</h3>
-        <p>Make it easy to book your team when everyone is available.</p>
+        <div className={Style.icon}>{icon}</div>
+        <div className={Style.title}>{title}</div>
+        <div className={Style.message}>{message}</div>
       </div>
     </div>
   );
