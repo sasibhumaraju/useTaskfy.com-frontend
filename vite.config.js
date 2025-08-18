@@ -13,4 +13,9 @@ export default defineConfig({
       input: resolve(__dirname, 'main/index.html'),
     },
   },
+  server: {
+    proxy: {
+      '/api': 'http://localhost:8080',
+    },
+  },
 })
