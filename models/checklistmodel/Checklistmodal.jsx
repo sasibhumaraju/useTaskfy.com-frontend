@@ -33,13 +33,9 @@ function Checklistmodal({loadTeams, getProjectsFromTeam, teamId, teamName, proje
 
   const [startTime, setStartTime] = useState("")
   const [duration, setDuration] = useState({H:0,M:0})
-  // const [occurrences, setOccurrences] = useState("")
+
   const [intervals, setIntervals] = useState(1);
 
-  // const [isActive, setIsActive] = useState("")
-  // const [projectName, setProjectName] = useState("")
-  // const [teamId, setTeamId] = useState("")
-//   const [companyName, setCompanyName] = useState("Dxc Technology")
 
 const [infoColor, setInfoColor] = useState("green")
 
@@ -47,7 +43,9 @@ const [infoColor, setInfoColor] = useState("green")
   const handleOnSubmit = async (e) => {
       e.preventDefault();
       if(!user && !user.id) return;
-      if(selectedOptions && selectedOptions.length<=0) {
+      if( (selectedOptions && selectedOptions.length<=0) && repeatType!==0) {
+        console.log("trapped");
+        
         setInfoColor("tomato")
         return;
       }

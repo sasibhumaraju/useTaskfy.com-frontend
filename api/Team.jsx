@@ -37,21 +37,21 @@ const getTeamsByUserId = async (userId) => {
         const response = await axiosPrivateInstance.get(`/team/getTeamsByUserId/${userId}`);
        if (!response.status || response.status !== 200) {
             ToastDark({
-                message: 'An error occurred while fetching teams. Please try again.',
+                message: 'An error occurred while fetching teams.',
                 icon: '☹️'
             });
             return null; // Return null or handle the error as needed
         }
        
-        console.log(JSON.stringify(response));
+        // console.log(JSON.stringify(response));
         return response.data; // Assuming the API returns user data or a success message
     } catch (error) {
         if (error.response) {
             console.log("Data:", error.response.data.message); // <-- backend JSON body here
-            ToastDark({ message: error.response.data.message? 'No teams found for you create new team start' :'An error occurred while creating team. Please try again.',icon: '🙃'});
+            ToastDark({ message: error.response.data.message? 'No teams found for you create new team start' :'An error occurred while creating team.',icon: '🙃'});
         } else {
         ToastDark({
-            message: 'An error occurred while creating team. Please try again.',
+            message: 'An error occurred while creating team. ',
             icon: '☹️'
         });}
         return null;

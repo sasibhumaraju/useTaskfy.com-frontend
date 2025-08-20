@@ -17,7 +17,7 @@ function Signup() {
 
     const { user, login, logout } = useAuth();
 
-    const [email, setEmail] = useState("sasi.bhumaraju@gmail.com");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [company, setCompany] = useState("Dxc Technology");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -73,12 +73,20 @@ function Signup() {
 
     const step1Func = async () => {
       // send verification email
-
+      const regex = /^[a-zA-Z0-9._%+-]+@dxc\.com$/;
+      
+      if(!regex.test(email)) {
+         ToastDark({
+            message: 'Enter proper dxc technology email',
+            icon: '🐥'
+        });
+        return;
+      }
+      
       const success = await sendVerificationMail(email);
       if (success) {
           forwardButtonFunc();
       }
-      
     }
 
     const step2Func = async () => {
@@ -160,9 +168,11 @@ function Signup() {
                 type="email"
                 placeholder="Enter your email"
                 value={email}
-                required
-                title={"Enter a valid email address (e.g., user@example.com)"}
-                pattern={"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"}
+                required={true}
+                // title={"Enter a valid email address (e.g., user@example.com)"}
+                title={"Enter a valid Dxc Technology email address (e.g., user@dxc.com)"}
+                // pattern={"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"}
+                pattern={"^[a-zA-Z0-9._%+-]+@dxc\.com$"}
                 onChange={(e) => setEmail(e.target.value)}
              />
 

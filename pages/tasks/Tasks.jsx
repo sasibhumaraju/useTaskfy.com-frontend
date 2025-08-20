@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Appbar from '../../components/appbar/Appbar'
 import Pagebody from '../pagebody/Pagebody'
 import { Form, useLocation, useNavigate, useParams } from 'react-router';
@@ -10,6 +10,14 @@ import InputElement from '../../components/inputelement/InputElement';
 import FormElement from '../../components/formelement/Formelement';
 import EmptyScreen from '../../components/emptyscreen/EmptyScreen';
 import { IconSizes } from '../../strings/constants';
+import Checkslist from '../../components/checkslist/Checkslist';
+import Checksitem from '../../components/checkslist/Checksitem';
+import { getTeamsByUserId, getTeamsWithProjectsAndChecklistsByUserId } from '../../api/Team';
+import { useAuth } from '../../context/AuthContext';
+import Checklistmodal from '../../models/checklistmodel/Checklistmodal';
+import { acknowledgeTaskByMe, completeTaskByMe, getActiveTasksByTeamId, killTaskByMe } from '../../api/Task';
+import Taskmodel from '../../models/taskmodel/Taskmodel';
+import { getProjectsByTeamId } from '../../api/Project';
 
 
 function Tasks() {
@@ -19,101 +27,184 @@ function Tasks() {
       }, []);
   
 
-  const location = useLocation();
-  const navigate = useNavigate();
-   const  [intialActiveParamIndex, setIntialActiveParamIndex] = useState(null);
-   const  [intialTaskStatus, setIntialTaskStatus] = useState(null);
+  const navigate = useNavigate()
+  const [teams, setTeams] = useState(null);
+  const [activeIndex2, setActiveIndex2] = useState(0);
+  const [activeIndex1, setActiveIndex1] = useState(0);
+  const [checklist, setChecklist] = useState([]);
+  const [tasks, setTasks] = useState([]);
+  const [showBorder, toggleShowBorder] = useState(true);
+  const [projects, setProjects] = useState(null)
+  const {user} = useAuth();
 
-   const [openDialog, closeDialog, Dialog] = useDialog();
+  const location = useLocation(); 
 
-   const [selectedFilter, setSelectedFilter] = useState([]);
+  const statusClicks = [ 
+    {element:"Upcoming", click:()=>{navigateTasks("Upcoming")}}, 
+    {element:"Active", click:()=>{navigateTasks("Active")}},
+    {element:"Overdue", click:()=>{navigateTasks("Overdue")}},
+    {element:"Working", click:()=>{navigateTasks("Working")}}, ]
 
-  const pageNavs = [
-                {click:()=>{},element:<p>Focus</p>,  headIcon: null}, 
-                {click:()=>{},element:<p>Active</p>,  headIcon: null}, 
-                {click:()=>{},element:<p>Overdue</p>, headIcon: null}, 
-                {click:()=>{},element:<p>Finished</p>, headIcon: null},  ];  
-  const teamClicks = [
-                {click:()=>{getTeamTaks("Mainframe Operations")},element:<p>Mainframe Operations</p>,  headIcon: null}, 
-                {click:()=>{getTeamTaks("Mainframe Storage")},element:<p>Mainframe Storage</p>, headIcon: null}, 
-                {click:()=>{getTeamTaks("Mainframe CICS")},element:<p>Mainframe CICS</p>, headIcon: null}, 
-                {click:()=>{getTeamTaks("Mainframe Automation")},element:<p>Mainframe Automation</p>, headIcon: null}]; 
+ 
+
+  useEffect(()=> {
+
+      const queryParams = new URLSearchParams(location.search);
+      const currentTeam = queryParams.get('team');
+      const currentStatus = queryParams.get('status');
+      if(!currentTeam && teams) navigate(`/tasks?team=${ teams && teams[0].name}&status=${currentStatus}`);
+
+      var a1=activeIndex1;
+      var a2=activeIndex2;
+      teams && teams.map((t,_i)=>{
+        if(t.name === currentTeam) {
+              setActiveIndex1(_i); a1=_i;
+              statusClicks.map((status,_j)=>{
+                if(status.element === currentStatus) {
+                  setActiveIndex2(_j); a2=_j }
+              })
+        }
+      })
+      // loadChecklists(a1,a2)
+      if(teams === null || teams.length===0) return;
+      const teamId = teams[a1].id;
+      loadActiveTasksByTeam(teamId,a2)
+  },[location,teams])
 
 
-  const setUp = async () => {
-    const queryParams = new URLSearchParams(location.search);
-      let team = queryParams.get('team');
-      if(team === null || team === undefined) {
-        team = await getLocalStorage("team");
-      }
-
-      console.log(`Team from query params: ${team}`);
-
-      switch(team) {
-        case "Mainframe Operations":
-          setIntialActiveParamIndex(0);
-          break;
-        case "Mainframe Storage":
-          setIntialActiveParamIndex(1);
-          break;
-        case "Mainframe CICS":
-          setIntialActiveParamIndex(2);
-          break;
-        case "Mainframe Automation":
-          setIntialActiveParamIndex(3);
-          break;
-        default:
-          setIntialActiveParamIndex(0);
-      }
-      setLocalStorage("team", team);
-      setLocalStorage("taskStatus", "active");
-  }
-  
-  useEffect( () => {
-    setUp();
-  }, [location.search]); // ✅ watch for search change
-
-  const getTeamTaks = (team) => {
-    console.log(`Fetching tasks for team: ${team} from location: ${location.pathname}`);
-    navigate(`/tasks?team=${team}`);
-    // console.log(`Location changed to: ${JSON.stringify(queryParams.get('team'))}`);
+  const loadActiveTasksByTeam = async (teamId,a2) => {
+    console.log("team id : ", teamId, "idex",  a2);
+    const activeTasks = await getActiveTasksByTeamId(teamId);
+    if(!activeTasks) return;
+    var h = activeTasks.filter((item)=>item.status===statusClicks[a2].element.toUpperCase());
+    console.log(h);
+    setTasks(h)
   }
 
-  const testMethod = () => { 
-    console.log("hello from actions button"); 
-  } 
+
+  const navigateTeams = async (teamName) => {
+    navigate(`/tasks?team=${teamName}&status=${statusClicks[0].element}`);
+  }
+
+  const navigateTasks = (statusType) => {
+    navigate(`/tasks?team=${teams && teams[activeIndex1].name}&status=${statusType}`);
+  }
+
+  const loadTeams = async () => {
+    if(!user && !user.id) return;
+    const tp = await getTeamsByUserId(user.id);
+    if(!tp || tp && tp.length===0) return
+    if(!tp) return;
+    setTeams(tp);
+    loadProjects(tp[activeIndex1]?.id);
+  }
+
+  const acknowledgeTask = async (taskId) => {
+      await acknowledgeTaskByMe(taskId);
+      await loadActiveTasksByTeam( teams[activeIndex1].id, activeIndex2)
+  }
+
+  const completeTask = async (taskId) => {
+    await completeTaskByMe(taskId)
+    await loadActiveTasksByTeam( teams[activeIndex1].id, activeIndex2)
+  }
+
+  const killTask = async (taskId) => {
+    await killTaskByMe(taskId)
+    await loadActiveTasksByTeam( teams[activeIndex1].id, activeIndex2)
+  }
+
+  useEffect(()=>{
+    if(!teams || teams && teams.length===0) return
+    loadProjects(teams[activeIndex1]?.id);
+  },[activeIndex1])
+
+  const loadProjects = async (teamId) => {
+    const ps = await getProjectsByTeamId(teamId);
+    console.log(JSON.stringify(ps));
+    if(!ps || ps && ps.length===0){ 
+      setProjects(null)
+      return;}
+    console.log(JSON.stringify(ps));
+    var t = ps.map((p)=>p.name);
+    setProjects(t)
+    
+  }
+
+  useEffect(()=>{
+      loadTeams();
+  },[])
+
+  useEffect(() => {
+  const loopThis = async () => {
+    console.log("Interval running...");
+    if (projects && projects.length > 0 && teams && teams.length > 0) {
+      await loadActiveTasksByTeam(teams[activeIndex1].id, activeIndex2);
+    }
+  };
+
+  const interval = setInterval(loopThis, 30 * 1000);
+  return () => clearInterval(interval);
+}, [projects, teams, activeIndex1, activeIndex2]);
+
+  const [openDialog, closeDialog, Dialog] = useDialog(<Taskmodel loadTasks={()=>loadActiveTasksByTeam( teams[activeIndex1].id, activeIndex2)} teamId={teams && teams[activeIndex1].id} teamName={teams && teams[activeIndex1].name }  />)
 
   return (
-    <div id='tasks'> 
-      <Appbar  title="Tasks" subtitle="Manage your tasks efficiently" showActionsButtons={true} actionFunc={openDialog} />
-       {intialActiveParamIndex !== null && (
-      <Pagebody 
-        pageNavs={teamClicks} 
-        paramClicks={pageNavs} 
-        intialActiveParamIndex={intialActiveParamIndex}
-        // filters={["Mainframe Operations", "Mainframe Storage", "Mainframe CICS", "Mainframe Automation"]}
-        // selectedFilter={selectedFilter}
-        // setSelectedFilter={setSelectedFilter}
-        > 
+    <div>
+      <Appbar showBackButton={false} title="🌦️ Tasks" subtitle="Work on your tasks efficiently" showActionsButtons={ teams && projects && teams  } actionButtonText='Add new task' actionFunc={()=>{openDialog()}}  />
+        <Pagebody 
+          pageNavs1={teams && teams.map((t)=>{ return { element:<p>{t.name}</p>, click:()=>{navigateTeams(t.name)} }}  )} 
+          intialActiveIndex1={activeIndex1}
 
-        {/* <h1>Tasks Page</h1>
-        <p>Selected Team: {getLocalStorage("team")}</p>
-        <p>Selected Task Status: {getLocalStorage("taskStatus")}</p>
-        <p>Selected Filters: {selectedFilter.join(', ')}</p> */}
-       {Dialog}
-       {/* <InputElement
-         label="Title"
-         type="text"
-         placeholder={"Enter task title"}
-         onChange={() => {}}
-       /> */}
-     
-        {/* <Listview items={["Task 1", "Task 2", "Task 3", "Task 4"]} actionsElement={ <Actionsbutton actions={[{ name: "Acknowledge", actionFunc: testMethod },  ]} />}  /> */}
+          pageNavs2={teams && projects  && statusClicks} 
+          intialActiveIndex2={activeIndex2}
+        >
 
-      <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={"No existing tasks"} messageText={"You have no tasks until someone or you will create or scheduled based on check list."} />
+      {/* { teams && teams[activeIndex1].projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.PROJECT}></Icon>} messageHeaderText={"Add a projects to your team"} messageText={"You have to add a projects to your team or someone will, if you don't have option to do so, contact your team owner."} />} */}
+      {/* {JSON.stringify(checklist)} */}
+      {!teams &&
+          <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={"Be a part of your team"} messageText={"Firts create your team or be a part of others to see or add tasks"} /> }   
+
+      { teams && teams.length===0  && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={`Be in some team or create yours`} messageText={"Add tasks to your list or be in some team or create your own team."} /> }
+
+        {teams && !projects && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={"Add projects come again here"} messageText={"Tasks won't be created or found without projects"} /> }
+      {/* {JSON.stringify(tasks)} */}
+      {teams && tasks.length===0 && projects && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={`No ${statusClicks[activeIndex2].element} tasks found`} messageText={"No tasks found right now! wait for sometime and monitor properly."} />  }
+       { tasks.length>0 &&
+              <Checkslist bordered={true}> 
+                  { tasks.map((item,_i)=>{
+                    
+                    if(item.status === statusClicks[activeIndex2].element.toUpperCase()) {
+                      
+                    return  <Checksitem
+                        isLastItem={_i===tasks.length-1}
+                        key={_i}
+                        cursor={"default"}
+                        bordered={true}
+                        itemTitleText={item.name}
+                        itemSubtitleText={ item.description}
+                        // occurrences={item.occurrences || "∞"}
+                        startTime={item.startTime}
+                        endTime={item.endTime}
+                        status={item.status}
+                        // duration={item.duration}
+                        // intervels={item.intervals}
+                
+                        projectName={item.projectName}
+                        teamName={item.teamName}
+                        acknowledgeBy={item.acknowledgeBy}
+                        // repeattType={item.repeatType}
+                        // onWhichDays={item.onWhichDays.flat()}
+                        actionElements={<> {  item.status!=="UPCOMING" && item.status!=="COMPLETED" && item.status!=="KILLED" &&  item.acknowledgeBy===null && <Actionsbutton actions={[ { name: "Acknowledge", actionFunc: ()=>{acknowledgeTask(item.id)} },  ]} />}
+                        { item.acknowledgeBy===user.email && item.status!=="COMPLETED" && item.status!=="KILLED" && <Actionsbutton actions={[ { name: "Completed", actionFunc: ()=>{completeTask(item.id)} }, { name: "Kill", actionFunc: ()=>{killTask(item.id)} } ]} />}
+                        </>} />}
+                      
+                    })}  
+                 </Checkslist>
+        }    
+             
+        {Dialog}
       </Pagebody>
-    )}
-  
     </div>
   )
 }

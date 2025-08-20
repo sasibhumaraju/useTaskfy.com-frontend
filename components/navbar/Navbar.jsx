@@ -28,14 +28,14 @@ export default function Navbar({links, direction, divId, type, buttonType, borde
     const [classL, setClassL] = useState(Array.from({ length: links.length }, (_,i)=> i==intialActiveIndex && type==NavType.NAV? getNavLinkClass(Constants.ACTIVE) : getNavLinkClass(Constants.IN_ACTIVE)))
 
     const makeThisActive = (idx) => {
-        links[idx].to && navigate(links[idx].to);
+        links[idx]?.to && navigate(links[idx]?.to);
         links[idx].click && links[idx].click();
         activateThisLink(idx)
     }
 
     const activateThisLink = (idx) => {
          if(NavType.NAV === type) {
-            links[idx].to && navigate(links[idx].to);
+            links[idx]?.to && navigate(links[idx]?.to);
             var l = Array.from({ length: links.length }, (_,i)=> i==idx? getNavLinkClass(Constants.ACTIVE) : getNavLinkClass(Constants.IN_ACTIVE))
             setClassL(l); }
     }

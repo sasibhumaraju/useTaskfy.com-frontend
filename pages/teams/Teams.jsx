@@ -44,7 +44,7 @@ function Teams() {
         <Pagebody > 
           { teams && teams.length===0 && Actionsbutton && <FeatureTemplate createTeamFunc={openDialog}></FeatureTemplate>}
           {/* { teams && JSON.stringify(teams)} */}
-          { teams && <Teamlist> 
+          { teams && teams.length!==0 && <Teamlist> 
               {teams && teams.map((item,_i)=>{
                 return <Teamitem
                 isLastItem={_i===teams.length-1}

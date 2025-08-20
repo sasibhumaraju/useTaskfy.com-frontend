@@ -13,6 +13,7 @@ function Teammodal({loadTeams}) {
   const [teamName, setTeamName] = useState("")
   const [description, setDescription] = useState("")
   const [companyName, setCompanyName] = useState("Dxc Technology")
+  const [email, setEmail] = useState("")
 
   
   const handleOnSubmit = async (e) => {
@@ -22,12 +23,14 @@ function Teammodal({loadTeams}) {
         name: teamName,
         ownerId: user.id,
         description: description,
-        companyName: companyName
+        companyName: companyName,
+        email: email
        });
        
        loadTeams()
        setTeamName("")
        setDescription("")
+       setEmail("")
        closeDialog();
   }
 
@@ -67,6 +70,17 @@ function Teammodal({loadTeams}) {
           pattern={`^[a-zA-Z0-9.,!?'\\"()\\-\\s]{3,100}$`}
           onChange={(e) => setDescription(e.target.value)}
         />
+
+        <InputElement
+                label="Provide An Email For Notifications"
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                required
+                title={"Enter a valid email address (e.g., user@example.com)"}
+                pattern={"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"}
+                onChange={(e) => setEmail(e.target.value)}
+             />
         
         <button id='modalSubmit' style={{ 
           visibility:"hidden",

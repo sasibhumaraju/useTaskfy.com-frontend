@@ -37,7 +37,7 @@ function Checklist() {
       const queryParams = new URLSearchParams(location.search);
       const currentTeam = queryParams.get('team');
       const currentProject = queryParams.get('project');
-      if(!currentTeam && teams) navigate(`/checklist?team=${ teams && teams[0].name}&project=${ teams && teams[0].projects[0].name }`);
+      if(!currentTeam && teams) navigate(`/checklist?team=${ teams && teams[0].name}&project=${ teams && teams[0]?.projects[0]?.name }`);
       var a1=activeIndex1;
       var a2=activeIndex2;
       teams && teams.map((t,_i)=>{
@@ -60,17 +60,18 @@ function Checklist() {
         }
       })
 
-      loadChecklists(a1,a2)
+    loadChecklists(a1,a2);
 
   },[location,teams])
-
-   const lT = useCallback(()=>{
+  
+   const lT = useCallback((teams)=>{
     setTeams(teams);
-  },[teams])
+  },[])
 
   const loadChecklists = async (a1,a2) => {
     const tp = await getTeamsWithProjectsAndChecklistsByUserId(user.id);
-    var l = tp[a1].checklists.filter((i)=>i.projectName===teams[a1].projects[a2].name);
+     if(!tp || tp && tp.length===0) return
+    var l = tp[a1].checklists.filter((i)=>i.projectName===tp[a1].projects[a2].name);
     l.sort((a, b) => {
       // Create Date objects using a dummy date (e.g., '1970-01-01') and the time string
       const dateA = new Date(`1970-01-01T${a.startTime}Z`);
@@ -81,7 +82,9 @@ function Checklist() {
     })
     console.log(JSON.stringify(l));
     setChecklist(l)
-    lT()
+    // lT(tp)
+    // setTeams(tp);
+    return tp;
   }
 
  
@@ -96,6 +99,7 @@ function Checklist() {
   const loadTeams = async () => {
     if(!user && !user.id) return;
     const tp = await getTeamsWithProjectsAndChecklistsByUserId(user.id);
+    if(!tp || tp && tp.length===0) return
     var l = tp[activeIndex1].checklists.filter((i)=>i.projectName===tp[activeIndex1].projects[activeIndex2].name);
     setChecklist(l)
     if(!tp) return;
@@ -124,15 +128,19 @@ function Checklist() {
           intialActiveIndex2={activeIndex2}
         >
 
-      { teams && teams[activeIndex1].projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.PROJECT}></Icon>} messageHeaderText={"Add a projects to your team"} messageText={"You have to add a projects to your team or someone will, if you don't have option to do so, contact your team owner."} />}
+        {!teams &&
+          <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={"No Teams! No Projects! So no checklist"} messageText={"First create your team or be a part of others to see or add checklist"} /> }   
+
+      { teams && teams[activeIndex1].projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={"Add projects come again here"} messageText={"Go to your project section add new project for your team come again here"} />}
       {/* {JSON.stringify(checklist)} */}
 
-      { teams && teams[activeIndex1].projects.length>0 && checklist.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={`Add checklists to your project`} messageText={"Add checklist to your project or someone will, if you don't have option to do so, contact your team owner."} /> }
+      { teams && teams[activeIndex1].projects.length>0 && checklist.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={`Add checklists to your project`} messageText={"Only owners of the team could add checklist as of now if you are the one feel free to add one"} /> }
 
        { checklist.length>0 &&
               <Checkslist bordered={true}> 
                   { checklist.map((item,_i)=>{
                     return <Checksitem
+                  
                         isLastItem={_i===checklist.length-1}
                         key={_i}
                         cursor={"default"}
@@ -145,10 +153,10 @@ function Checklist() {
                         intervels={item.intervals}
                 
                         projectName={item.projectName}
-                        teamName={teams[activeIndex1].name}
+                        teamName={ teams && teams[activeIndex1].name}
                         repeattType={item.repeatType}
-                        onWhichDays={item.onWhichDays.flat()}
-                        actionElements={<> {  <Actionsbutton actions={[{ name: "Remove", actionFunc: ()=>{removeCheck(item.id)} },  ]} />}</>} />
+                        onWhichDays={item.onWhichDays && item.onWhichDays.length>0 && item.onWhichDays.flat()}
+                        actionElements={<> { teams && teams[activeIndex1]?.ownerId===user.id &&  <Actionsbutton actions={[{ name: "Remove", actionFunc: ()=>{removeCheck(item.id)} },  ]} />}</>} />
                       
                     })}  
                  </Checkslist>

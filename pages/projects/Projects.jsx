@@ -28,7 +28,7 @@ function Projects() {
   useEffect(()=> {
       const queryParams = new URLSearchParams(location.search);
       const currentTeam = queryParams.get('team');
-      if(!currentTeam && teams) navigate(`/projects?team=${ teams && teams[0].name}`);
+      if(!currentTeam && teams) navigate(`/projects?team=${ teams && teams[0]?.name}`);
       teams && teams.map((t,_i)=>{
         if(t.name === currentTeam) {
           console.log("active index", _i);
@@ -61,22 +61,29 @@ function Projects() {
       loadTeams();
   },[])
 
-  const [openDialog, closeDialog, Dialog] = useDialog(<Projectmodal teamId={teams && teams[activeIndex].id} teamName={teams && teams[activeIndex].name} existingProjectNames={teams && teams[activeIndex].projects} existingProjects={teams && teams[activeIndex].projects} loadTeams={loadTeams} />)
+  const [openDialog, closeDialog, Dialog] = useDialog(<Projectmodal teamId={teams!==null && 
+    teams[activeIndex]?.id} 
+    teamName={teams && teams[activeIndex]?.name} 
+    existingProjectNames={teams && teams[activeIndex]?.projects} 
+    existingProjects={teams && teams[activeIndex]?.projects} 
+    loadTeams={loadTeams} />)
 
 
   return (
     <div>
-      <Appbar showBackButton={false} title="Projects" subtitle="Manage your projects efficiently" showActionsButtons={ teams && teams[activeIndex].ownerId===user.id } actionButtonText='Add project' actionFunc={()=>{openDialog()}}  />
+      <Appbar showBackButton={false} title="Projects" subtitle="Manage your projects efficiently" showActionsButtons={ teams && teams[activeIndex]?.ownerId===user.id } actionButtonText='Add project' actionFunc={()=>{openDialog()}}  />
         <Pagebody 
           pageNavs1={teams && teams.map(t=>{ return { element:<p>{t.name}</p>, click:()=>{getProjectsFromTeam(t.name)} }}  )} 
           intialActiveIndex1={activeIndex}
         >
-       { teams && teams[activeIndex].projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.PROJECT}></Icon>} messageHeaderText={"Add a projects to your team"} messageText={"You have to add a projects to your team or someone will, if you don't have option to do so, contact your team owner."} />}
+       {teams && teams.length===0 &&
+          <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.PROJECT}></Icon>} messageHeaderText={"No Teams! So no projects"} messageText={"First create your team or be a part of others to see or add projects"} /> }   
+       { teams && teams[activeIndex]?.projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.PROJECT}></Icon>} messageHeaderText={"Add your first project"} messageText={"You have to add a projects to your team or someone will, if you don't have option to do so, contact your team owner"} />}
 
        { teams && <Teamlist bordered={false}> 
-              {teams && teams[activeIndex].projects.map((item,_i)=>{
+              {teams && teams[activeIndex]?.projects.map((item,_i)=>{
                 return <Teamitem
-                isLastItem={_i===teams[activeIndex].projects.length-1}
+                isLastItem={_i===teams[activeIndex]?.projects.length-1}
                 key={_i}
                 cursor={"default"}
                 bordered={false}

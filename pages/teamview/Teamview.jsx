@@ -58,7 +58,7 @@ function Teamview() {
 
   return (
     <div className={Style.teamView}>
-        <Appbar showBackButton={true} backButtonFunc={()=>navigate(-1)}  title={ (team && team.name || "Team name")} subtitle={( users && `${users.length} people work here  +  `) + (team && `Created at : ${ formatZonedTime2( team.createdAt)}  `)} showActionsButtons={team && team.ownerId===user.id}  actionButtonText='Add member' actionFunc={openDialog}  />
+        <Appbar showBackButton={true} backButtonFunc={()=>navigate(-1)}  title={ (team && team.name || "Team name")} subtitle={( users && `${users.length} people work here  +  `) + (team && `Created at : ${ formatZonedTime2( team.createdAt)}   \n Team mail — ${team.email} `)} showActionsButtons={team && team.ownerId===user.id}  actionButtonText='Add member' actionFunc={openDialog}  />
         <Pagebody > 
           { users && users.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TEAM}></Icon>} />}
           {/* { teams && JSON.stringify(teams)} */}

@@ -13,9 +13,12 @@ export default defineConfig({
       input: resolve(__dirname, 'main/index.html'),
     },
   },
-  server: {
-    proxy: {
-      '/api': 'http://localhost:8080',
-    },
-  },
+  // server: {
+  //   proxy: {
+  //     // '/api': 'http://localhost:8082',
+  //     // '/api': 'http://localhost:8080',
+  //      '/api': 'https://usetaskfycom-backend-production.up.railway.app'
+       
+  //   },
+  // },
 })

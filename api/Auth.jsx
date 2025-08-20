@@ -48,7 +48,7 @@ const authenticateUser = async (email, password) => {
         });
         return response.data; // Assuming the API returns user data or a success message
     } catch (error) {
-        console.log(JSON.stringify(error.response.data));
+        console.log(JSON.stringify(error));
 
         ToastDark({
             message: error.response.data.message? "Invalid credentials. Please try again." : 'An error occurred while logging in. Please try again.',

@@ -65,4 +65,35 @@ const removeProjectFromTeam = async (teamId, projectId) => {
     }
 }
 
-export { addProjectToTeam, removeProjectFromTeam  }
+const getProjectsByTeamId = async (teamId) => {
+     try {
+        const response = await axiosPrivateInstance.get(`/project/getProjectsByTeamId/${teamId}`);
+       if (!response.status || response.status !== 200) {
+            ToastDark({
+                message: 'An error occurred while getting projects from the team.',
+                icon: '☹️'
+            });
+            return null; // Return null or handle the error as needed
+        }
+        // ToastDark({
+        //     message: `Project add to ${ response && response.data && response.data.name} team created successfully.`,
+        //     icon: '✅'
+        // });
+        console.log(JSON.stringify(response));
+        return response.data; // Assuming the API returns user data or a success message
+    } catch (error) {
+        if (error.response) {
+            console.log("Data:", error.response.data.message); // <-- backend JSON body here
+            ToastDark({ message: error.response.data.message? 'An error occurred while getting projects from the team.' :'An error occurred while getting projects from the team.',icon: '🙃'});
+        } else {
+        ToastDark({
+            message: 'An error occurred while getting projects from the team.',
+            icon: '☹️'
+        });}
+        return null;
+    }
+}
+
+
+
+export { addProjectToTeam, removeProjectFromTeam, getProjectsByTeamId }

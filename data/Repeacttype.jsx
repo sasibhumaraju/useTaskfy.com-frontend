@@ -1,2 +1,2 @@
-const RepeatTypes = ["Daily", "Weekly","Monthly"]
+const  RepeatTypes = ["Daily", "Weekly","Monthly"]
 export default RepeatTypes

@@ -10,7 +10,8 @@
     font-size: var(--font-size-body-md);
     color: var(--text-default);
     font-weight: 600;
-    overflow: hidden;
+    /* overflow: hidden; */
+    /* overflow-y: hidden; */
 }
 
 .checksList {
@@ -28,7 +29,7 @@
 
 
 .itemContainer {
-  padding: 20px 25px;
+  padding: 30px 35px;
 
   border-bottom: 1px solid var(--border-default);
   border-radius: 0px;
@@ -37,13 +38,63 @@
   flex-direction: row;
   align-items: center;
   /* gap: 17px; */
-  position: relative;
   height: calc(min-content - 40px);
+  position: relative;
+/* overflow: hidden; */
+/* overflow-x: hidden; */
   
 }
 
 .itemContainer:hover {
   background-color: var(--bg-muted);
+}
+
+/* .taggedContainer {
+  position: absolute;
+  top: 12px;
+  left: -20px;
+  font-size: 8px;
+  transform: rotate(-45deg);
+  width: 80px;
+  background-color: black;
+  text-align: center;
+  padding: 3px 0px;
+  color: white;
+  letter-spacing: 0px;
+  font-weight: bold;
+  
+} */
+
+
+.taggedContainer {
+  position: absolute;
+  top: 12px;
+  left: -20px;
+  top: 0px;
+  left: 0px;
+  border-radius: 5px;
+  min-width: 80px;
+  width: 80px;
+  height: 60px;
+  /* background-color: black; */
+  text-align: center;
+  color: white;
+  letter-spacing: 0px;
+  font-weight: bold;
+  overflow: hidden;
+  
+}
+
+.tagged {
+  font-size: 8px;
+  transform: rotate(-45deg) translateX(-24px) translateY(-5px);
+  width: 80px;
+  background-color: black;
+  text-align: center;
+  padding: 3px 0px;
+  color: white;
+  letter-spacing: 0px;
+  font-weight: bold;
 }
 
 .itemHeader {
@@ -102,7 +153,8 @@
     position: absolute;
     right: 25px;
     display: flex;
-    align-items: center;
+    align-items: start;
+    justify-content: start;
     flex-direction: row;
     gap: 15px;
 }
