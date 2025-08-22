@@ -18,6 +18,7 @@ import Searchelement from '../../components/searchelement/Searchelement'
 import InputElement from '../../components/inputelement/InputElement'
 import Divider from '../../components/divider/Divider'
 import { ButtonTheme } from '../../components/button/ButtonTheme'
+import Teamsloading from '../../components/loadingC/Teamsloading'
 
 function Teamview() {
 
@@ -58,12 +59,11 @@ function Teamview() {
 
   return (
     <div className={Style.teamView}>
-        <Appbar showBackButton={true} backButtonFunc={()=>navigate(-1)}  title={ (team && team.name || "Team name")} subtitle={( users && `${users.length} people work here  +  `) + (team && `Created at : ${ formatZonedTime2( team.createdAt)}   \n Team mail — ${team.email} `)} showActionsButtons={team && team.ownerId===user.id}  actionButtonText='Add member' actionFunc={openDialog}  />
+        <Appbar showBackButton={true} backButtonFunc={()=>navigate(-1)}  title={ (team && team.name || "Team name")} subtitle={( users?  `${users.length} people work here   &  ` : ` `) + (team && ` Email — ${team.email} `)} showActionsButtons={team && team.ownerId===user.id}  actionButtonText='Add member' actionFunc={openDialog}  />
         <Pagebody > 
+          { !users &&  <Teamsloading bordered={false} />}
           { users && users.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TEAM}></Icon>} />}
-          {/* { teams && JSON.stringify(teams)} */}
           { users && <Teamlist bordered={false}> 
-              
               {users && users.map((item,_i)=>{
                 return <Teamitem
                 isLastItem={_i===users.length-1}
@@ -74,31 +74,8 @@ function Teamview() {
                 itemTitleText={" "+item.name}
                 itemSubtitleText={"Email - "+ item.email }
                 actionElements={<>{ <Tag colorNum={item.role==="OWNER"? 5 : 3} text={helper(item.id,user.id,item.role)} />} { team.ownerId === user.id && team.ownerId!==item.id && <Actionsbutton actions={[{ name: "Remove", actionFunc: ()=>removeMember(item.id) },  ]} />}</>} />})}    
-
-                {/* <Divider verticalMargin='40px' borderWidth='0px'/>
-
-                <div className={Style.esc}>
-                 <InputElement
-                label="Team's escalation mail address"
-                marginBottom='0px'
-                type="text"
-                placeholder="Update team's email address"
-                value={""}
-                required
-                title={"Enter a valid company name"}
-                pattern={"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"}
-                onChange={(e) => setCompany(e.target.value)}
-             />
-             <Button theme={ButtonTheme.LIGHT} text={"Send otp"}/>
-             </div> */}
               </Teamlist> }
           {Dialog}
-       
-          {/* <Filter
-          filters={["sasibhumaraju"]}
-          selectedFilter={f}
-          setSelectedFilter={setF}
-          /> */}
       </Pagebody>
     </div>
   )
