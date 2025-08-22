@@ -30,10 +30,12 @@ function Taskmodel({teamId, teamName, loadTasks}) {
 
 
 const [infoColor, setInfoColor] = useState("green")
+const [disable,setDisable] = useState(false);
 
  
   const handleOnSubmit = async (e) => {
       e.preventDefault();
+      setDisable(true);
       if(!user && !user.id) return;
       if(selectedProject ==="") {
         setInfoColor("tomato")
@@ -149,7 +151,7 @@ const [infoColor, setInfoColor] = useState("green")
 
         
 
-        <button id='modalSubmit' style={{ 
+        <button id='modalSubmit' disabled={disable} style={{ 
           visibility:"hidden",
            display:"none" 
            }}> hello</button>

@@ -1,11 +1,11 @@
 .lightThemeButton {
-    cursor: pointer;
-    transition: var(--transition);
-    outline: 1px solid var(--border-default);
-    box-shadow: var(--button-light-shadow);
-    padding: 7px 10px;
-    border-radius: 10px;
-    color: var(--text-default);
+    /* cursor: pointer; */
+    /* transition: var(--transition); */
+    /* outline: 1px solid var(--border-default); */
+    /* box-shadow: var(--button-light-shadow); */
+    /* padding: 7px 10px; */
+    /* border-radius: 10px; */
+    /* color: var(--text-default); */
 
     font-weight: 600;
     text-decoration: none;
@@ -13,11 +13,20 @@
     margin: 0px 0px;
     min-width: max-content;
     border: none;
-    background-color: var(--bg-muted);
+    /* background-color: var(--bg-muted); */
+
+
+     cursor: pointer;
+  transition: var(--transition);
+  outline: 1px solid var(--border-default);
+  box-shadow: var(--button-light-shadow);
+  padding: 7px 10px;
+  border-radius: 10px;
+  color: var(--text-default);
 }
 
 .lightThemeButton:hover {
-   background-color: var(--bg-emphasis);
+    background-color: var(--bg-hover);
     transition: background-color 0.2s ease;
 }
 

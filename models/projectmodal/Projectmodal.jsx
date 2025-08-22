@@ -13,9 +13,11 @@ function Projectmodal({teamId,teamName, loadTeams, existingProjects}) {
     const [projectName, setProjectName] = useState("")
     const [info, setInfo] = useState("project name should be unique")
     const [infoColor, setInfoColor] = useState("green")
+    const [disable,setDisable] = useState(false);
   
   const handleOnSubmit = async (e) => {
       e.preventDefault();
+      setDisable(true);
       var isExists = checkIsAlreadyExists(projectName)
       if(isExists) return;
       if(!user && !user.id) return;
@@ -90,7 +92,7 @@ function Projectmodal({teamId,teamName, loadTeams, existingProjects}) {
           onChange={(e) => setDescription(e.target.value)}
         />
        
-        <button id='modalSubmit' style={{ 
+        <button id='modalSubmit' disabled={disable} style={{ 
           visibility:"hidden",
            display:"none",
            }}> hello</button>

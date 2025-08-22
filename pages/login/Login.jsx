@@ -7,6 +7,7 @@ import { ButtonTheme } from '../../components/button/ButtonTheme'
 import { useNavigate } from 'react-router'
 import { useAuth } from '../../context/AuthContext'
 import { authenticateUser } from '../../api/Auth'
+import Appbar from '../../components/appbar/Appbar'
 
 function Login() {
 
@@ -43,14 +44,16 @@ function Login() {
 
   return (
     <div className={Style.loginContainer} >
-        <div className={Style.logo}>UseTaskfy.com</div>
-        <div className={Style.welcome}>Welcome back</div>
+        <div className={Style.logo}>usetaskfy.com</div>
+        <div className={Style.welcome}>Feels good to have you back 🥰</div>
         <div className={Style.loginFormContainer}>
           <FormElement 
             onSubmit={handleLogin}
             // title="Login"
             // subtitle="Please enter your credentials to continue"
           >
+                          <Appbar showBackButton={false} horizontalPadding='0px' title="Login" subtitle="Sign in to continue " showActionsButtons={false} />
+
             <InputElement
                 label="Email"
                 type="email"
@@ -73,11 +76,11 @@ function Login() {
                 onChange={(e) => setPassword(e.target.value)}
              />
 
-             <Button text="Login" theme={ButtonTheme.LIGHT} marginTop="20px" marginBottom="10px" type="submit" />
+             <Button text="Login" theme={ButtonTheme.DARK} marginTop="20px" marginBottom="10px" type="submit" />
 
         </FormElement>  
         </div>  
-         <div className={Style.footer} onClick={() => navigate("/signup")}>Don't have an account?</div>
+         <div className={Style.footer} onClick={() => navigate("/signup")}>Don't have an account? <b> <u> Signup</u> </b></div>
     </div>
   )
 }

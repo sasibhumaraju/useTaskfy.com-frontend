@@ -8,15 +8,23 @@ import { addUsersToTeam } from '../../api/Team'
 function Membermodel({existingItems=[],teamId, loadTeams}) {
 
     const [f, setF] = useState([])
+    const [disable,setDisable] = useState(false);
 
     const handleOnSubmit = async (e) => {
          e.preventDefault();
+         setDisable(true);
          console.log(JSON.stringify(f));
          const userIds = f.map(u=>u.id)
          await addUsersToTeam(teamId,userIds);
         //  window.location.reload(); 
         loadTeams()
+        closeDialog()
      }
+
+   const closeDialog = () => {
+    const e = document.getElementById("clickToClose");
+    e.click()
+  }
 
   return (
     <div className={Style.memberModelContainer}>
@@ -33,7 +41,7 @@ function Membermodel({existingItems=[],teamId, loadTeams}) {
             marginBottom='30px'
           />
 
-        <button id='modalSubmit' style={{ 
+        <button id='modalSubmit' disabled={disable} style={{ 
           visibility:"hidden",
            display:"none" 
            }}> hello</button>

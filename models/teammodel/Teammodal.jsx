@@ -14,10 +14,12 @@ function Teammodal({loadTeams}) {
   const [description, setDescription] = useState("")
   const [companyName, setCompanyName] = useState("Dxc Technology")
   const [email, setEmail] = useState("")
+  const [disable,setDisable] = useState(false);
 
   
   const handleOnSubmit = async (e) => {
       e.preventDefault();
+      setDisable(true);
       if(!user && !user.id) return;
        await createTeam({
         name: teamName,
@@ -82,7 +84,7 @@ function Teammodal({loadTeams}) {
                 onChange={(e) => setEmail(e.target.value)}
              />
         
-        <button id='modalSubmit' style={{ 
+        <button id='modalSubmit' disabled={disable} style={{ 
           visibility:"hidden",
            display:"none" 
            }}> hello</button>

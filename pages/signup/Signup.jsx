@@ -134,8 +134,10 @@ function Signup() {
 
   return (
     <div className={Style.signupContainer}>
-        <div className={Style.logo}>Create your Usetaskfy.com account</div>
-        <div className={Style.welcome}>Free for individuals. Team plans for collaborative features.</div>
+        <div className={Style.logo}>Create your  <u> usetaskfy.com </u>account</div>
+        {/* <div className={Style.welcome}>Free for individuals. Team plans for collaborative features.</div> */}
+        <div className={Style.welcome}>Free for everyone — solo or with your team</div>
+
         <div className={Style.loginFormContainer}>
 
           <FormElement 
@@ -250,7 +252,7 @@ function Signup() {
         </FormElement>  
 
         </div>  
-         <div className={Style.footer} onClick={() => navigate("/login")}  >Already have an account? <b color='black'>Sign in</b></div>
+         <div className={Style.footer} onClick={() => navigate("/login")}  >Already have an account? <b color='black'><b> <u> Sign in</u> </b></b></div>
     </div>
   )
 }

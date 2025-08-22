@@ -38,10 +38,12 @@ function Checklistmodal({loadTeams, getProjectsFromTeam, teamId, teamName, proje
 
 
 const [infoColor, setInfoColor] = useState("green")
+const [disable,setDisable] = useState(false);
 
  
   const handleOnSubmit = async (e) => {
       e.preventDefault();
+      setDisable(true);
       if(!user && !user.id) return;
       if( (selectedOptions && selectedOptions.length<=0) && repeatType!==0) {
         console.log("trapped");
@@ -168,7 +170,7 @@ const [infoColor, setInfoColor] = useState("green")
           pattern={`^[1-5]$`}
           onChange={(e) => setIntervals(e.target.value)}
         />
-        <button id='modalSubmit' style={{ 
+        <button id='modalSubmit' disabled={disable} style={{ 
           visibility:"hidden",
            display:"none" 
            }}> hello</button>

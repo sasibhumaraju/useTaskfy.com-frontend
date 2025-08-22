@@ -5,11 +5,16 @@
     justify-content: center;
     height: 100vh;
     background-color: var(--border-muted);
+    padding: 50px 0px;
 }
 
 .logo {
     font-weight: bold;
     font-size: var(--font-size-heading-5);
+    color: black;
+
+     font-weight: bold;
+    font-size: var(--font-size-heading-3);
     color: black;
 }
 
@@ -18,13 +23,19 @@
     font-weight: bold;
     color: black;
     margin-bottom: 40px;
+     font-size: var(--font-size-heading-5);
+    font-weight: 600;
+    color: black;
+    margin-bottom: 40px;
+    color: var(--text-muted);
 }
 
 .loginFormContainer {
     width: calc(100% - 65px);
     max-width: calc(450px - 65px);
     background-color: red;
-    padding: 35px;
+    padding:  35px;
+    padding-bottom: 55px;
     background-color: white;
     border-radius: 4px;
     outline: 1px solid var(--border-default);
