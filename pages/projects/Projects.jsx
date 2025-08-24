@@ -15,6 +15,8 @@ import Teamlist from '../../components/teamlist/Teamlist';
 import Teamitem from '../../components/teamlist/Teamitem';
 import Tag from '../../components/tags/Tag';
 import { removeProjectFromTeam } from '../../api/Project';
+import Hnavloading from '../../components/loadingC/Hnavloading';
+import Teamsloading from '../../components/loadingC/Teamsloading';
 
 function Projects() {
 
@@ -76,6 +78,10 @@ function Projects() {
           pageNavs1={teams && teams.map(t=>{ return { element:<p>{t.name}</p>, click:()=>{getProjectsFromTeam(t.name)} }}  )} 
           intialActiveIndex1={activeIndex}
         >
+        
+        { !teams && <Hnavloading/>}
+        { !teams && <Teamsloading bordered={false}/>}
+
        {teams && teams.length===0 &&
           <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.PROJECT}></Icon>} messageHeaderText={"No Teams! So no projects"} messageText={"First create your team or be a part of others to see or add projects"} /> }   
        { teams && teams[activeIndex]?.projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.PROJECT}></Icon>} messageHeaderText={"Add your first project"} messageText={"You have to add a projects to your team or someone will, if you don't have option to do so, contact your team owner"} />}

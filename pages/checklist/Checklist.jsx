@@ -20,6 +20,8 @@ import Checksitem from '../../components/checkslist/Checksitem';
 import Checklistmodal from '../../models/checklistmodel/Checklistmodal';
 import InputElement from '../../components/inputelement/InputElement';
 import { deleteCheck } from '../../api/CheckList';
+import Hnavloading from '../../components/loadingC/Hnavloading';
+import Teamsloading from '../../components/loadingC/Teamsloading';
 
 
 function Checklist() {
@@ -127,6 +129,10 @@ function Checklist() {
           pageNavs2={teams && teams[activeIndex1].projects.map(p=>{ return { element:<p>{p.name}</p>, click:()=>{getProjectsFromTeam(null,p.name)} }}  )} 
           intialActiveIndex2={activeIndex2}
         >
+
+         { !teams && <Hnavloading/>}
+          {/* { !teams && <Hnavloading/>} */}
+       { !teams && <Teamsloading bordered={true}/>}
 
         {!teams &&
           <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={"No Teams! No Projects! So no checklist"} messageText={"First create your team or be a part of others to see or add checklist"} /> }   
