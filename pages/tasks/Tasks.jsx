@@ -18,6 +18,8 @@ import Checklistmodal from '../../models/checklistmodel/Checklistmodal';
 import { acknowledgeTaskByMe, completeTaskByMe, getActiveTasksByTeamId, killTaskByMe } from '../../api/Task';
 import Taskmodel from '../../models/taskmodel/Taskmodel';
 import { getProjectsByTeamId } from '../../api/Project';
+import Hnavloading from '../../components/loadingC/Hnavloading';
+import Teamsloading from '../../components/loadingC/Teamsloading';
 
 
 function Tasks() {
@@ -32,7 +34,7 @@ function Tasks() {
   const [activeIndex2, setActiveIndex2] = useState(0);
   const [activeIndex1, setActiveIndex1] = useState(0);
   const [checklist, setChecklist] = useState([]);
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(null);
   const [showBorder, toggleShowBorder] = useState(true);
   const [projects, setProjects] = useState(null)
   const {user} = useAuth();
@@ -73,6 +75,7 @@ function Tasks() {
 
 
   const loadActiveTasksByTeam = async (teamId,a2) => {
+    setTasks(null)
     console.log("team id : ", teamId, "idex",  a2);
     const activeTasks = await getActiveTasksByTeamId(teamId);
     if(!activeTasks) return;
@@ -155,22 +158,18 @@ function Tasks() {
         <Pagebody 
           pageNavs1={teams && teams.map((t)=>{ return { element:<p>{t.name}</p>, click:()=>{navigateTeams(t.name)} }}  )} 
           intialActiveIndex1={activeIndex1}
+          loadingElement1={<Hnavloading n={3}/>}
 
           pageNavs2={teams && projects  && statusClicks} 
           intialActiveIndex2={activeIndex2}
+          loadingElement2={<Hnavloading n={5}/>}
         >
 
-      {/* { teams && teams[activeIndex1].projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.PROJECT}></Icon>} messageHeaderText={"Add a projects to your team"} messageText={"You have to add a projects to your team or someone will, if you don't have option to do so, contact your team owner."} />} */}
-      {/* {JSON.stringify(checklist)} */}
-      {!teams &&
-          <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={"Be a part of your team"} messageText={"Firts create your team or be a part of others to see or add tasks"} /> }   
-
-      { teams && teams.length===0  && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={`Be in some team or create yours`} messageText={"Add tasks to your list or be in some team or create your own team."} /> }
-
-        {teams && !projects && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={"Add projects come again here"} messageText={"Tasks won't be created or found without projects"} /> }
-      {/* {JSON.stringify(tasks)} */}
-      {teams && tasks.length===0 && projects && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={`No ${statusClicks[activeIndex2].element} tasks found`} messageText={"No tasks found right now! wait for sometime and monitor properly."} />  }
-       { tasks.length>0 &&
+      {(!teams || !projects || !tasks )&& <Teamsloading bordered={true}/>}   
+      {teams && teams.length===0  && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={`Be in some team or create yours`} messageText={"Add tasks to your list or be in some team or create your own team."} /> }
+      {teams && teams.length>0 && projects && projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={"Add projects come again here"} messageText={"Tasks won't be created or found without projects"} /> }
+      {teams && projects && tasks && tasks.length===0 && projects && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={`No ${statusClicks[activeIndex2].element} tasks found`} messageText={"No tasks found right now! wait for sometime and monitor properly."} />  }
+       { tasks && tasks.length>0 &&
               <Checkslist bordered={true}> 
                   { tasks.map((item,_i)=>{
                     

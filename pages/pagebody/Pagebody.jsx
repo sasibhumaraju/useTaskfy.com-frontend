@@ -12,7 +12,9 @@ function  Pagebody({
       setSelectedFiltersList, 
       children, 
       pageBodyContentVerticalPadding="17px", 
-      pageBodyContentHorizontalPadding="0px"
+      pageBodyContentHorizontalPadding="0px",
+      loadingElement1,
+      loadingElement2
     }) {
   
   return (
@@ -22,10 +24,12 @@ function  Pagebody({
           { pageNavs1 && <div className={Style.pagebodyNav}>
               <Navbar direction={Constants.HORIZONTAL} type={NavType.NAV} buttonType={ButtonType.LIGHT} links={pageNavs1} intialActiveIndex={intialActiveIndex1} />  
           </div>}
+          { !pageNavs1 && loadingElement1}
 
           { pageNavs2 && <div className={Style.pagebodyActionButtons}>
               <Navbar direction={Constants.HORIZONTAL} type={NavType.NAV} bordered={true} buttonType={ButtonType.LIGHT} links={pageNavs2} intialActiveIndex={intialActiveIndex2}/>         
           </div>}
+          { !pageNavs2 && loadingElement2}
 
           {filtersList && <Filter filters={filtersList} selectedFilter={selectedFiltersList} setSelectedFilter={setSelectedFiltersList} />}
 

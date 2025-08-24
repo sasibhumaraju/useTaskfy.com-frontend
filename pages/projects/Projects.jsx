@@ -76,11 +76,12 @@ function Projects() {
       <Appbar showBackButton={false} title="Projects" subtitle="Manage your projects efficiently" showActionsButtons={ teams && teams[activeIndex]?.ownerId===user.id } actionButtonText='Add project' actionFunc={()=>{openDialog()}}  />
         <Pagebody 
           pageNavs1={teams && teams.map(t=>{ return { element:<p>{t.name}</p>, click:()=>{getProjectsFromTeam(t.name)} }}  )} 
+          loadingElement1={<Hnavloading n={4}/>}
           intialActiveIndex1={activeIndex}
         >
         
-        { !teams && <Hnavloading/>}
         { !teams && <Teamsloading bordered={false}/>}
+
 
        {teams && teams.length===0 &&
           <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.PROJECT}></Icon>} messageHeaderText={"No Teams! So no projects"} messageText={"First create your team or be a part of others to see or add projects"} /> }   

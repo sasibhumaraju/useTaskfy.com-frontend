@@ -2,14 +2,14 @@ import React from 'react'
 import Style from './zloading.module.css'
 
 
-function Hnavloading() {
+function Hnavloading({n=4}) {
 
-    var l = new Array(4).fill(0);
+    var l = new Array(n).fill(0);
 
   return (
     <div className={Style.zhorizontal} >
-        {l.map(()=><div className={Style.zhInActive}>
-            <div className={Style.zhInActiveChild}></div>
+        {l.map((_,i)=><div className={Style.zhInActive} style={{width: i===n-1? "50px" : null }} >
+            <div  className={Style.zhInActiveChild}></div>
         </div>)}
     </div>
   )

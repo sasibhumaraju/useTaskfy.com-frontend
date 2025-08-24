@@ -30,7 +30,7 @@ function Checklist() {
   const [teams, setTeams] = useState(null);
   const [activeIndex2, setActiveIndex2] = useState(0);
   const [activeIndex1, setActiveIndex1] = useState(0);
-  const [checklist, setChecklist] = useState([]);
+  const [checklist, setChecklist] = useState(null);
   const {user} = useAuth();
 
   const location = useLocation(); 
@@ -71,6 +71,7 @@ function Checklist() {
   },[])
 
   const loadChecklists = async (a1,a2) => {
+    setChecklist(null)
     const tp = await getTeamsWithProjectsAndChecklistsByUserId(user.id);
      if(!tp || tp && tp.length===0) return
     var l = tp[a1].checklists.filter((i)=>i.projectName===tp[a1].projects[a2].name);
@@ -99,6 +100,7 @@ function Checklist() {
   }
 
   const loadTeams = async () => {
+    setChecklist(null)
     if(!user && !user.id) return;
     const tp = await getTeamsWithProjectsAndChecklistsByUserId(user.id);
     if(!tp || tp && tp.length===0) return
@@ -125,24 +127,19 @@ function Checklist() {
         <Pagebody 
           pageNavs1={teams && teams.map(t=>{ return { element:<p>{t.name}</p>, click:()=>{getProjectsFromTeam(t.name,null)} }}  )} 
           intialActiveIndex1={activeIndex1}
+          loadingElement1={<Hnavloading n={3}/>}
 
           pageNavs2={teams && teams[activeIndex1].projects.map(p=>{ return { element:<p>{p.name}</p>, click:()=>{getProjectsFromTeam(null,p.name)} }}  )} 
           intialActiveIndex2={activeIndex2}
+          loadingElement2={<Hnavloading n={5}/>}
         >
 
-         { !teams && <Hnavloading/>}
-          {/* { !teams && <Hnavloading/>} */}
-       { !teams && <Teamsloading bordered={true}/>}
+      { (!teams || !checklist) && <Teamsloading bordered={true}/>}
+      { teams && teams.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={"No Teams! No Projects! So no checklist"} messageText={"First create your team or be a part of others to see or add checklist"} /> }   
+      { teams && teams.length>0 &&  teams[activeIndex1].projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={"Add projects come again here"} messageText={"Go to your project section add new project for your team come again here"} />}
+      { teams && teams[activeIndex1].projects.length>0 && checklist && checklist.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={`Add checklists to your project`} messageText={"Only owners of the team could add checklist as of now if you are the one feel free to add one"} /> }
 
-        {!teams &&
-          <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={"No Teams! No Projects! So no checklist"} messageText={"First create your team or be a part of others to see or add checklist"} /> }   
-
-      { teams && teams[activeIndex1].projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={"Add projects come again here"} messageText={"Go to your project section add new project for your team come again here"} />}
-      {/* {JSON.stringify(checklist)} */}
-
-      { teams && teams[activeIndex1].projects.length>0 && checklist.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={`Add checklists to your project`} messageText={"Only owners of the team could add checklist as of now if you are the one feel free to add one"} /> }
-
-       { checklist.length>0 &&
+       { checklist && checklist.length>0 &&
               <Checkslist bordered={true}> 
                   { checklist.map((item,_i)=>{
                     return <Checksitem
