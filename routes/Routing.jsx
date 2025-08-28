@@ -9,6 +9,7 @@ import Signup from '../pages/signup/Signup'
 import { useAuth } from '../context/AuthContext'
 import ScrollToTop from '../util/ScrollToTop'
 import Teamview from '../pages/teamview/Teamview'
+import Leaderboard from '../pages/leaderboard/Leaderboard'
 
 function Routing() {
    const { user } = useAuth();
@@ -30,6 +31,8 @@ function Routing() {
         <Route path='/projects' element={ <ProtectedRoute> <Projects /> </ProtectedRoute>}></Route>
         <Route path='/teams' element={ <ProtectedRoute> <Teams /> </ProtectedRoute>}></Route>
         <Route path='/teams/:teamId' element={ <ProtectedRoute> <Teamview /> </ProtectedRoute>}></Route>
+        <Route path='/leaderboard' element={ <ProtectedRoute> <Leaderboard /> </ProtectedRoute>}></Route>
+
 
         <Route path='/profile' element={ <ProtectedRoute> <Profile /> </ProtectedRoute>}></Route>
 

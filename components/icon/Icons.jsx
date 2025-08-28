@@ -1,4 +1,4 @@
-import { TbClockQuestion, TbLivePhoto, TbUserFilled, TbUsers } from "react-icons/tb";
+import { TbChartBar, TbClockQuestion, TbLivePhoto, TbUserFilled, TbUsers } from "react-icons/tb";
 import { SiPolywork } from "react-icons/si";
 import { LuGrid2X2Check, LuUserRound } from "react-icons/lu";
 import { MdOutlineDarkMode, MdOutlineTaskAlt, MdWorkOutline } from "react-icons/md";
@@ -9,9 +9,14 @@ import { RiAddLine, RiFocus3Line, RiUserSmileLine } from "react-icons/ri";
 import { HiMiniUser, HiUser } from "react-icons/hi2";
 import { IoIosArrowDown, IoMdArrowRoundBack, IoMdLogOut, IoMdTime } from "react-icons/io";
 import { IoChevronDown, IoChevronDownOutline, IoClose, IoOptionsOutline } from "react-icons/io5";
-import { PiMicrosoftTeamsLogo } from "react-icons/pi";
+import { PiChartBarHorizontal, PiListChecksBold, PiListDashesBold, PiMicrosoftTeamsLogo } from "react-icons/pi";
 import { SlOptions } from "react-icons/sl";
 import { FiInfo } from "react-icons/fi";
+import { TiChartBarOutline } from "react-icons/ti";
+import { HiOutlineChartBar } from "react-icons/hi";
+import { BsListColumnsReverse } from "react-icons/bs";
+import { GrList } from "react-icons/gr";
+import { FaListUl } from "react-icons/fa6";
 
 
 const Icons =  {
@@ -19,6 +24,7 @@ const Icons =  {
     LIST: <LuGrid2X2Check/>,
     PROJECT: <MdWorkOutline/>,
     TASK: <FaTasks/>,
+    // TASK : <FaListUl />,
     USER: <HiUser />,
     BACK: <IoMdArrowRoundBack />,
     ADD: <RiAddLine />,
@@ -35,7 +41,8 @@ const Icons =  {
     OPTIONS: <SlOptions />,
     LOGOUT: <IoMdLogOut />,
     DARKTHEME: <MdOutlineDarkMode />,
-    INFO: <FiInfo />
+    INFO: <FiInfo />,
+    LEADERCHART: <HiOutlineChartBar />
 
 };
 

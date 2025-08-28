@@ -20,6 +20,7 @@ import Taskmodel from '../../models/taskmodel/Taskmodel';
 import { getProjectsByTeamId } from '../../api/Project';
 import Hnavloading from '../../components/loadingC/Hnavloading';
 import Teamsloading from '../../components/loadingC/Teamsloading';
+import Checklistloading from '../../components/loadingC/Checklistloading';
 
 
 function Tasks() {
@@ -165,7 +166,8 @@ function Tasks() {
           loadingElement2={<Hnavloading n={5}/>}
         >
 
-      {(!teams || !projects || !tasks )&& <Teamsloading bordered={true}/>}   
+
+      {(!teams || !projects || !tasks )&& <Checklistloading status={true} n={3} />}   
       {teams && teams.length===0  && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={`Be in some team or create yours`} messageText={"Add tasks to your list or be in some team or create your own team."} /> }
       {teams && teams.length>0 && projects && projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={"Add projects come again here"} messageText={"Tasks won't be created or found without projects"} /> }
       {teams && projects && tasks && tasks.length===0 && projects && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={`No ${statusClicks[activeIndex2].element} tasks found`} messageText={"No tasks found right now! wait for sometime and monitor properly."} />  }

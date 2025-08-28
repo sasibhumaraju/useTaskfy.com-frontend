@@ -28,6 +28,7 @@ function Navlist() {
         <Navlink to="/checklist" headIcon={<Icon size={IconSizes.sm} icon={Icons.LIST}></Icon>} className={({ isActive }) => (isActive ? Style.vActive : Style.vInActive)}>Checklist</Navlink>
         <Navlink to="/projects" headIcon={<Icon size={IconSizes.sm} icon={Icons.PROJECT}></Icon>} className={({ isActive }) => (isActive ? Style.vActive : Style.vInActive)}>Projects</Navlink>
         <Navlink to="/teams" headIcon={<Icon size={IconSizes.sm} icon={Icons.TEAM}></Icon>} className={({ isActive }) => (isActive ? Style.vActive : Style.vInActive)}>Teams</Navlink>
+        <Navlink to="/leaderboard" headIcon={<Icon size={IconSizes.sm} icon={Icons.LEADERCHART}></Icon>} className={({ isActive }) => (isActive ? Style.vActive : Style.vInActive)}>Leaderboard</Navlink>
 
         <div className={Style.logoutButton}>
           <Navbar

@@ -22,6 +22,7 @@ import InputElement from '../../components/inputelement/InputElement';
 import { deleteCheck } from '../../api/CheckList';
 import Hnavloading from '../../components/loadingC/Hnavloading';
 import Teamsloading from '../../components/loadingC/Teamsloading';
+import Checklistloading from '../../components/loadingC/Checklistloading';
 
 
 function Checklist() {
@@ -134,7 +135,8 @@ function Checklist() {
           loadingElement2={<Hnavloading n={5}/>}
         >
 
-      { (!teams || !checklist) && <Teamsloading bordered={true}/>}
+
+      { (!teams || !checklist) && <Checklistloading n={3} />}
       { teams && teams.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={"No Teams! No Projects! So no checklist"} messageText={"First create your team or be a part of others to see or add checklist"} /> }   
       { teams && teams.length>0 &&  teams[activeIndex1].projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={"Add projects come again here"} messageText={"Go to your project section add new project for your team come again here"} />}
       { teams && teams[activeIndex1].projects.length>0 && checklist && checklist.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={`Add checklists to your project`} messageText={"Only owners of the team could add checklist as of now if you are the one feel free to add one"} /> }
