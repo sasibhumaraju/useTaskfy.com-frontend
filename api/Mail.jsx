@@ -26,10 +26,10 @@ const sendVerificationMail = async (email) => {
         return true;
 
     } catch (error) {
-        console.log(JSON.stringify(error.response.data.message));
+        console.log(JSON.stringify(error));
 
         ToastDark({
-            message: error.response.data.message || 'An error occurred while sending verification email. Please try again.',
+            message:  'An error occurred while sending verification email. Please try again.',
             icon: '☹️'
         });
         return false;

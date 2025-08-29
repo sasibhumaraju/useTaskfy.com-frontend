@@ -20,7 +20,7 @@ const registerUser = async (userData) => {
         });
         return response.data; // Assuming the API returns user data or a success message
     } catch (error) {
-        console.log(JSON.stringify(error.response.data));
+        console.log(JSON.stringify(error.response));
 
         ToastDark({
             message: error.response.data.message || 'An error occurred while registering. Please try again.',

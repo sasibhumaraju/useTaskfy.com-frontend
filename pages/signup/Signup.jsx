@@ -73,15 +73,15 @@ function Signup() {
 
     const step1Func = async () => {
       // send verification email
-      const regex = /^[a-zA-Z0-9._%+-]+@dxc\.com$/;
+      // const regex = /^[a-zA-Z0-9._%+-]+@dxc\.com$/;
       
-      if(!regex.test(email)) {
-         ToastDark({
-            message: 'Enter proper dxc technology email',
-            icon: '🐥'
-        });
-        return;
-      }
+      // if(!regex.test(email)) {
+      //    ToastDark({
+      //       message: 'Enter proper dxc technology email',
+      //       icon: '🐥'
+      //   });
+      //   return;
+      // }
       
       const success = await sendVerificationMail(email);
       if (success) {
@@ -174,7 +174,7 @@ function Signup() {
                 // title={"Enter a valid email address (e.g., user@example.com)"}
                 title={"Enter a valid Dxc Technology email address (e.g., user@dxc.com)"}
                 // pattern={"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"}
-                pattern={"^[a-zA-Z0-9._%+-]+@dxc\.com$"}
+                // pattern={"^[a-zA-Z0-9._%+-]+@dxc\.com$"}
                 onChange={(e) => setEmail(e.target.value)}
              />
 

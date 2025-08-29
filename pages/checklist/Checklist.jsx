@@ -40,7 +40,7 @@ function Checklist() {
       const queryParams = new URLSearchParams(location.search);
       const currentTeam = queryParams.get('team');
       const currentProject = queryParams.get('project');
-      if(!currentTeam && teams) navigate(`/checklist?team=${ teams && teams[0].name}&project=${ teams && teams[0]?.projects[0]?.name }`);
+      if(!currentTeam && teams && teams.length>0 ) navigate(`/checklist?team=${ teams && teams[0].name}&project=${ teams && teams[0]?.projects[0]?.name }`);
       var a1=activeIndex1;
       var a2=activeIndex2;
       teams && teams.map((t,_i)=>{
@@ -104,11 +104,11 @@ function Checklist() {
     setChecklist(null)
     if(!user && !user.id) return;
     const tp = await getTeamsWithProjectsAndChecklistsByUserId(user.id);
+     setTeams(tp);
     if(!tp || tp && tp.length===0) return
     var l = tp[activeIndex1].checklists.filter((i)=>i.projectName===tp[activeIndex1].projects[activeIndex2].name);
     setChecklist(l)
-    if(!tp) return;
-    setTeams(tp);
+    // if(!tp) return;
   }
 
   const removeCheck = async (checkId) => {
@@ -120,26 +120,26 @@ function Checklist() {
       loadTeams();
   },[])
 
-  const [openDialog, closeDialog, Dialog] = useDialog(<Checklistmodal loadTeams={loadTeams} teamId={teams && teams[activeIndex1].id} teamName={teams && teams[activeIndex1].name } projectName={teams && teams[activeIndex1].projects.length > 0 && teams[activeIndex1].projects[activeIndex2].name } getProjectsFromTeam={getProjectsFromTeam}/>)
+  const [openDialog, closeDialog, Dialog] = useDialog(<Checklistmodal loadTeams={loadTeams} teamId={teams && teams.length>0 && teams[activeIndex1].id} teamName={teams && teams.length>0 && teams[activeIndex1].name } projectName={teams && teams.length>0 && teams[activeIndex1].projects.length > 0 && teams[activeIndex1].projects[activeIndex2].name } getProjectsFromTeam={getProjectsFromTeam}/>)
 
   return (
     <div>
-      <Appbar showBackButton={false} title="Checklist" subtitle="Manage your checklist efficiently" showActionsButtons={ teams && teams[activeIndex1].ownerId===user.id && teams && teams[activeIndex1].projects.length > 0 } actionButtonText='Add new check' actionFunc={()=>{openDialog()}}  />
+      <Appbar showBackButton={false} title="Checklist" subtitle="Manage your checklist efficiently" showActionsButtons={ teams && teams.length>0 && teams[activeIndex1].ownerId===user.id && teams && teams.length>0 && teams[activeIndex1].projects.length > 0 } actionButtonText='Add new check' actionFunc={()=>{openDialog()}}  />
         <Pagebody 
-          pageNavs1={teams && teams.map(t=>{ return { element:<p>{t.name}</p>, click:()=>{getProjectsFromTeam(t.name,null)} }}  )} 
+          pageNavs1={teams  && teams.map(t=>{ return { element:<p>{t.name}</p>, click:()=>{getProjectsFromTeam(t.name,null)} }}  )} 
           intialActiveIndex1={activeIndex1}
           loadingElement1={<Hnavloading n={3}/>}
 
-          pageNavs2={teams && teams[activeIndex1].projects.map(p=>{ return { element:<p>{p.name}</p>, click:()=>{getProjectsFromTeam(null,p.name)} }}  )} 
+          pageNavs2={ (teams && teams.length===0 && []) || teams &&  teams[activeIndex1].projects.map(p=>{ return { element:<p>{p.name}</p>, click:()=>{getProjectsFromTeam(null,p.name)} }}  )} 
           intialActiveIndex2={activeIndex2}
           loadingElement2={<Hnavloading n={5}/>}
         >
 
 
-      { (!teams || !checklist) && <Checklistloading n={3} />}
-      { teams && teams.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={"No Teams! No Projects! So no checklist"} messageText={"First create your team or be a part of others to see or add checklist"} /> }   
+      { (!teams ) && <Checklistloading n={3} />}
+      { teams && teams.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={"First create teams to add checklist..."} messageText={"First create your team or be a part of others to see or add checklist"} /> }   
       { teams && teams.length>0 &&  teams[activeIndex1].projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={"Add projects come again here"} messageText={"Go to your project section add new project for your team come again here"} />}
-      { teams && teams[activeIndex1].projects.length>0 && checklist && checklist.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={`Add checklists to your project`} messageText={"Only owners of the team could add checklist as of now if you are the one feel free to add one"} /> }
+      { teams && teams.length>0 && teams[activeIndex1].projects.length>0 && checklist && checklist.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={`Add checklists to your project`} messageText={"Only owners of the team could add checklist as of now if you are the one feel free to add one"} /> }
 
        { checklist && checklist.length>0 &&
               <Checkslist bordered={true}> 

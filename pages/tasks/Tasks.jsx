@@ -55,7 +55,7 @@ function Tasks() {
       const queryParams = new URLSearchParams(location.search);
       const currentTeam = queryParams.get('team');
       const currentStatus = queryParams.get('status');
-      if(!currentTeam && teams) navigate(`/tasks?team=${ teams && teams[0].name}&status=${currentStatus}`);
+      if(!currentTeam && teams && teams.length>0 ) navigate(`/tasks?team=${ teams && teams[0].name}&status=${currentStatus}`);
 
       var a1=activeIndex1;
       var a2=activeIndex2;
@@ -97,9 +97,8 @@ function Tasks() {
   const loadTeams = async () => {
     if(!user && !user.id) return;
     const tp = await getTeamsByUserId(user.id);
-    if(!tp || tp && tp.length===0) return
-    if(!tp) return;
     setTeams(tp);
+    if( tp && tp.length===0) return
     loadProjects(tp[activeIndex1]?.id);
   }
 
@@ -126,7 +125,7 @@ function Tasks() {
   const loadProjects = async (teamId) => {
     const ps = await getProjectsByTeamId(teamId);
     console.log(JSON.stringify(ps));
-    if(!ps || ps && ps.length===0){ 
+    if( ps && ps.length===0){ 
       setProjects(null)
       return;}
     console.log(JSON.stringify(ps));
@@ -151,7 +150,7 @@ function Tasks() {
   return () => clearInterval(interval);
 }, [projects, teams, activeIndex1, activeIndex2]);
 
-  const [openDialog, closeDialog, Dialog] = useDialog(<Taskmodel loadTasks={()=>loadActiveTasksByTeam( teams[activeIndex1].id, activeIndex2)} teamId={teams && teams[activeIndex1].id} teamName={teams && teams[activeIndex1].name }  />)
+  const [openDialog, closeDialog, Dialog] = useDialog(<Taskmodel loadTasks={()=>loadActiveTasksByTeam( teams && teams.length>0 && teams[activeIndex1].id, activeIndex2)} teamId={teams && teams.length>0 && teams[activeIndex1].id} teamName={teams && teams.length>0 && teams[activeIndex1].name }  />)
 
   return (
     <div>
@@ -161,13 +160,13 @@ function Tasks() {
           intialActiveIndex1={activeIndex1}
           loadingElement1={<Hnavloading n={3}/>}
 
-          pageNavs2={teams && projects  && statusClicks} 
+          pageNavs2={ (teams && teams.length===0 && []) ||teams && projects  && statusClicks} 
           intialActiveIndex2={activeIndex2}
           loadingElement2={<Hnavloading n={5}/>}
         >
 
 
-      {(!teams || !projects || !tasks )&& <Checklistloading status={true} n={3} />}   
+      {( !teams && !tasks )&& <Checklistloading status={true} n={3} />}   
       {teams && teams.length===0  && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={`Be in some team or create yours`} messageText={"Add tasks to your list or be in some team or create your own team."} /> }
       {teams && teams.length>0 && projects && projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={"Add projects come again here"} messageText={"Tasks won't be created or found without projects"} /> }
       {teams && projects && tasks && tasks.length===0 && projects && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={`No ${statusClicks[activeIndex2].element} tasks found`} messageText={"No tasks found right now! wait for sometime and monitor properly."} />  }
