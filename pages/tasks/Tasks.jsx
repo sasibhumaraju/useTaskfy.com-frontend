@@ -166,7 +166,7 @@ function Tasks() {
         >
 
 
-      {( !teams && !tasks || !tasks )&& <Checklistloading status={true} n={3} />}   
+      {( !teams && !tasks )  && <Checklistloading status={true} n={3} />}   
       {teams && teams.length===0  && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={`Be in some team or create yours`} messageText={"Add tasks to your list or be in some team or create your own team."} /> }
       {teams && teams.length>0 && projects && projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={"Add projects come again here"} messageText={"Tasks won't be created or found without projects"} /> }
       {teams && projects && tasks && tasks.length===0 && projects && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.TASK}></Icon>} messageHeaderText={`No ${statusClicks[activeIndex2].element} tasks found`} messageText={"No tasks found right now! wait for sometime and monitor properly."} />  }

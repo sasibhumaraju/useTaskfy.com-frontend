@@ -14,6 +14,7 @@ import Tag from '../../components/tags/Tag'
 import Teamitem from '../../components/teamlist/Teamitem'
 import { useNavigate } from 'react-router'
 import Teamsloading from '../../components/loadingC/Teamsloading'
+import { sayHello } from '../../api/Mail'
 
 function Teams() {
     
@@ -43,9 +44,10 @@ function Teams() {
     <div id='teams'>
       <Appbar showBackButton={false} title="Teams" subtitle="Manage your teams efficiently" showActionsButtons={true} actionButtonText='Create team' actionFunc={openDialog}  />
         <Pagebody > 
+          
           {!teams &&  <Teamsloading/>}
           { teams && teams.length===0 && Actionsbutton && <FeatureTemplate createTeamFunc={openDialog}></FeatureTemplate>}
-          { teams && <Teamlist> 
+          { teams && teams.length>0 && <Teamlist> 
               {teams && teams.map((item,_i)=>{
                 return <Teamitem
                 isLastItem={_i===teams.length-1}

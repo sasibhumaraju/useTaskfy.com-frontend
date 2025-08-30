@@ -66,4 +66,40 @@ const verifyCode = async (email, code) => {
     }
 }
 
-export {sendVerificationMail, verifyCode}
+
+
+const sayHello = async (email, message) => {
+    try {
+        const response = await axiosPublicInstance.post('/email/sayHello', { email, message });
+
+        console.log(JSON.stringify(response.data));
+        console.log(`Response status: ${response.status}`);
+        console.log(`Response ok: ${response.ok}`);
+        
+        
+        if (!response.status || response.status !== 200) {
+            ToastDark({
+            message: 'An error occurred while sending hello.',
+            icon: '☹️'
+        });
+        return false
+        }
+
+         ToastDark({
+            message: 'Hello sent.',
+            icon: '✅'
+        });
+        return true;
+
+    } catch (error) {
+        console.log(JSON.stringify(error));
+
+        ToastDark({
+            message:  'An error occurred while sending hello.',
+            icon: '☹️'
+        });
+        return false;
+    }
+}
+
+export {sendVerificationMail, verifyCode, sayHello}

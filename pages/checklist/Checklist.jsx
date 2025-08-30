@@ -142,7 +142,7 @@ function Checklist() {
           {/* <Checklistmodal/> */}
 
 
-      { (!teams || !checklist ) && <Checklistloading n={3} />}
+      { (!teams  ) && <Checklistloading n={3} />}
       { teams && teams.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={"First create teams to add checklist..."} messageText={"First create your team or be a part of others to see or add checklist"} /> }   
       { teams && teams.length>0 &&  teams[activeIndex1].projects.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={"Add projects come again here"} messageText={"Go to your project section add new project for your team come again here"} />}
       { teams && teams.length>0 && teams[activeIndex1].projects.length>0 && checklist && checklist.length===0 && <EmptyScreen iconElement={<Icon size={IconSizes.lg} icon={Icons.LIST}></Icon>} messageHeaderText={`Add checklists to your project`} messageText={"Only owners of the team could add checklist as of now if you are the one feel free to add one"} /> }
