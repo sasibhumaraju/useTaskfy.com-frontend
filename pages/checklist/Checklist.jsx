@@ -116,6 +116,10 @@ function Checklist() {
       loadTeams()
   }
 
+  const editCheck = async (item) => {
+    navigate(`/checklist/edit`,{ state: item })
+  }
+
   useEffect(()=>{
       loadTeams();
   },[])
@@ -134,6 +138,8 @@ function Checklist() {
           intialActiveIndex2={activeIndex2}
           loadingElement2={<Hnavloading n={5}/>}
         >
+
+          {/* <Checklistmodal/> */}
 
 
       { (!teams || !checklist ) && <Checklistloading n={3} />}
@@ -161,7 +167,7 @@ function Checklist() {
                         teamName={ teams && teams[activeIndex1].name}
                         repeattType={item.repeatType}
                         onWhichDays={item.onWhichDays && item.onWhichDays.length>0 && item.onWhichDays.flat()}
-                        actionElements={<> { teams && teams[activeIndex1]?.ownerId===user.id &&  <Actionsbutton actions={[{ name: "Remove", actionFunc: ()=>{removeCheck(item.id)} },  ]} />}</>} />
+                        actionElements={<> { teams && teams[activeIndex1]?.ownerId===user.id &&  <Actionsbutton actions={[{ name: "Edit", actionFunc: ()=>{editCheck(item)} },{ name: "Remove", actionFunc: ()=>{removeCheck(item.id)} },   ]} />}</>} />
                       
                     })}  
                  </Checkslist>

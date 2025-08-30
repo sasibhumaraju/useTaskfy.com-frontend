@@ -20,25 +20,24 @@ import RepeatTypes from '../../data/Repeacttype';
 // import { MultiSelect } from 'primereact/multiselect';
         
 
-function Checklistmodal({loadTeams, getProjectsFromTeam, teamId, teamName, projectName}) {
+function Checklistmodal({loadTeams, getProjectsFromTeam, teamId, teamName, projectName, showHeader=true}) {
 
-  const { user } = useAuth()
+    const { user } = useAuth()
 
-  const [checkName, setCheckName] = useState("")
-  const [description, setDescription] = useState("")
+    const [checkName, setCheckName] = useState("")
+    const [description, setDescription] = useState("")
 
-  const [repeatType, setRepeatType] = useState(0)
+    const [repeatType, setRepeatType] = useState(0)
 
-  const [selectedOptions, setSelectedOptions] = useState([])
+    const [selectedOptions, setSelectedOptions] = useState([])
 
-  const [startTime, setStartTime] = useState("")
-  const [duration, setDuration] = useState({H:0,M:0})
+    const [startTime, setStartTime] = useState("")
+    const [duration, setDuration] = useState({H:0,M:0})
 
-  const [intervals, setIntervals] = useState(1);
+    const [intervals, setIntervals] = useState(1);
 
-
-const [infoColor, setInfoColor] = useState("green")
-const [disable,setDisable] = useState(false);
+    const [infoColor, setInfoColor] = useState("green")
+    const [disable,setDisable] = useState(false);
 
  
   const handleOnSubmit = async (e) => {
@@ -90,8 +89,8 @@ const [disable,setDisable] = useState(false);
     <div className={Style.teamModalContainer}>
 
         <FormElement
-          title={`Create New Check - ${teamName}`}
-          subtitle={`Fill details & create a new check for ${projectName}`}
+          title={ showHeader && `Create New Check - ${teamName}`}
+          subtitle={ showHeader && `Fill details & create a new check for ${projectName}`}
           onSubmit={handleOnSubmit}>
         
        <InputElement

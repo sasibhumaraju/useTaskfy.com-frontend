@@ -10,6 +10,7 @@ import { useAuth } from '../context/AuthContext'
 import ScrollToTop from '../util/ScrollToTop'
 import Teamview from '../pages/teamview/Teamview'
 import Leaderboard from '../pages/leaderboard/Leaderboard'
+import Editchecklist from '../pages/editchecklist/Editchecklist'
 
 function Routing() {
    const { user } = useAuth();
@@ -28,6 +29,8 @@ function Routing() {
         <Route path='/' element={ <ProtectedRoute> <Tasks /> </ProtectedRoute>}></Route>
         <Route path='/tasks' element={ <ProtectedRoute> <Tasks /> </ProtectedRoute>}></Route>
         <Route path='/checklist' element={ <ProtectedRoute> <Checklist /> </ProtectedRoute>}></Route>
+        <Route path='/checklist/edit' element={ <ProtectedRoute> <Editchecklist /> </ProtectedRoute>}></Route>
+
         <Route path='/projects' element={ <ProtectedRoute> <Projects /> </ProtectedRoute>}></Route>
         <Route path='/teams' element={ <ProtectedRoute> <Teams /> </ProtectedRoute>}></Route>
         <Route path='/teams/:teamId' element={ <ProtectedRoute> <Teamview /> </ProtectedRoute>}></Route>
