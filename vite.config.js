@@ -13,12 +13,13 @@ export default defineConfig({
       input: resolve(__dirname, 'main/index.html'),
     },
   },
-  // server: {
-  //   proxy: {
-  //     // '/api': 'http://localhost:8082',
-  //     // '/api': 'http://localhost:8080',
-  //      '/api': 'https://usetaskfycom-backend-production.up.railway.app'
+  server: {
+    proxy: {
+      // '/api': 'http://localhost:8082',
+      // '/api': 'http://localhost:8080',
+      '/api':'http://Uty-backend-env.eba-qrvxgh68.ap-south-1.elasticbeanstalk.com'
+      //  '/api': 'https://usetaskfycom-backend-production.up.railway.app'
        
-  //   },
-  // },
+    },
+  },
 })
